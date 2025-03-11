@@ -1,1 +1,68 @@
-<p>registration works!</p>
+<div class="container">
+  <h2>Registration</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Name -->
+    <label>Name:</label>
+    <input type="text" formControlName="name" class="form-control" />
+    <small *ngIf="registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched">
+      <span *ngIf="registrationForm.controls['name'].errors?.['required']">Name is required.</span>
+      <span *ngIf="registrationForm.controls['name'].errors?.['minlength']">Must be at least 3 characters.</span>
+    </small>
+
+    <!-- Age -->
+    <label>Age:</label>
+    <input type="number" formControlName="age" class="form-control" />
+    <small *ngIf="registrationForm.controls['age'].invalid && registrationForm.controls['age'].touched">
+      <span *ngIf="registrationForm.controls['age'].errors?.['required']">Age is required.</span>
+      
+    </small>
+
+    <!-- Email -->
+    <label>Email:</label>
+    <input type="email" formControlName="email" class="form-control" />
+    <small *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched">
+      <span *ngIf="registrationForm.controls['email'].errors?.['required']">Email is required.</span>
+      <span *ngIf="registrationForm.controls['email'].errors?.['email']">Invalid email format.</span>
+    </small>
+    <small *ngIf="emailExistsError" class="text-danger">Email already exists.</small>
+
+    <!-- Phone -->
+    <label>Phone:</label>
+    <input type="text" formControlName="phone" class="form-control" />
+    <small *ngIf="registrationForm.controls['phone'].invalid && registrationForm.controls['phone'].touched">
+      <span *ngIf="registrationForm.controls['phone'].errors?.['required']">Phone is required.</span>
+      <span *ngIf="registrationForm.controls['phone'].errors?.['pattern']">Must be 10 digits.</span>
+    </small>
+
+    <!-- Password -->
+    <label>Password:</label>
+    <input type="password" formControlName="password" class="form-control" />
+    <small *ngIf="registrationForm.controls['password'].invalid && registrationForm.controls['password'].touched">
+      <span *ngIf="registrationForm.controls['password'].errors?.['required']">Password is required.</span>
+      <span *ngIf="registrationForm.controls['password'].errors?.['minlength']">Must be at least 6 characters.</span>
+    </small>
+
+    <!-- Confirm Password -->
+    <label>Confirm Password:</label>
+    <input type="password" formControlName="confirmPassword" class="form-control" />
+    <small *ngIf="registrationForm.errors?.['passwordsMismatch'] && registrationForm.controls['confirmPassword'].touched" class="text-danger">
+      Passwords do not match.
+    </small>
+
+    <!-- Gender -->
+    <label>Gender:</label>
+    <select formControlName="gender" class="form-control">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    <small *ngIf="registrationForm.controls['gender'].invalid && registrationForm.controls['gender'].touched">
+      Gender is required.
+    </small>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="registrationForm.invalid">Register</button>
+  </form>
+</div>
