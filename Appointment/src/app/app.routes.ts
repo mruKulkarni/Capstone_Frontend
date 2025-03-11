@@ -11,11 +11,10 @@ export const routes: Routes = [
   {path: '', redirectTo:'departments', pathMatch: 'full'}, 
   { path: 'departments', component: DepartmentsComponent }, 
   { path: 'about', component: DepartmentsComponent }, // Temporary - Replace with About Component
-  { path: 'profile', component: ProfileComponent } 
-
-];
-export const routes: Routes = [
-    {path:'login',component:LoginComponent},
+  { path: 'profile', component: ProfileComponent },
+  {path:'login',component:LoginComponent},
     {path:'',component:AppComponent},
     {path:'registration',component:RegistrationComponent}
+
 ];
+
