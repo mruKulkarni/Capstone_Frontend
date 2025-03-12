@@ -1,0 +1,33 @@
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+    padding: 5px;
+  }
+  
+  p strong {
+    color: #000;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+      padding: 15px;
+    }
+  }
+  
