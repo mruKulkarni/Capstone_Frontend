@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfileComponent implements OnInit {
   profile: any;
-  userEmail: string = "john@example.com";
+  userEmail: string = "johndoe@example.com";
 
   constructor(private profileService: ProfileService){};
 

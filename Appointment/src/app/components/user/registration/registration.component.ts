@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -12,10 +13,11 @@ import { NgIf, NgFor } from '@angular/common';
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;
+  apiUrl = 'http://localhost:8082/register'
   existingEmails: string[] = ['test@example.com', 'user@example.com']; // Simulated database emails
   emailExistsError: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http:HttpClient) {
     this.registrationForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       age: ['', [Validators.required]],
@@ -31,24 +33,38 @@ export class RegistrationComponent {
   passwordsMatchValidator(formGroup: AbstractControl): ValidationErrors | null {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { passwordsMismatch: true };
+    return password === confirmPassword ? null :
+     { passwordsMismatch: true };
   }
 
   // ✅ Form submission
   onSubmit() {
     if (this.registrationForm.valid) {
-      const formData = this.registrationForm.value;
-      
-      // ✅ Check if email already exists
-      if (this.existingEmails.includes(formData.email)) {
-        this.emailExistsError = true;
-        return;
-      }
+      const formData = {
+        name: this.registrationForm.value.name,
+        age: this.registrationForm.value.age,
+        email: this.registrationForm.value.email,
+        phone: this.registrationForm.value.phone,
+        password: this.registrationForm.value.password,
+        gender: this.registrationForm.value.gender
+      };
 
-      console.log('Form Data:', formData);
-      alert('Registration Successful!');
-    } else {
-      alert('Please fill out the form correctly.');
-    }
+      console.log('Submitting:', formData);
+
+      this.http.post(this.apiUrl, formData).subscribe({
+        next: (response) => {
+          console.log('Success:', response);
+          alert('Registration Successful!');
+          this.registrationForm.reset();
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          if (error.status === 400) {
+            this.emailExistsError = true; // ✅ Show email exists error
+          } else {
+            alert('An error occurred while registering.');
+          }
+        }
+      });
   }
-}
+}}
