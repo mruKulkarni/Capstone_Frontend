@@ -10,7 +10,7 @@ import { AddDoctorComponent } from './components/admin/add-doctor/add-doctor.com
 import { ConfirmationComponent } from './components/user/confirmation/confirmation.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo:'departments', pathMatch: 'full'}, 
+  {path: '', redirectTo:'login', pathMatch: 'full'}, 
   { path: 'departments', component: DepartmentsComponent }, 
   { path: 'about', component: DepartmentsComponent }, // Temporary - Replace with About Component
   { path: 'profile', component: ProfileComponent },
