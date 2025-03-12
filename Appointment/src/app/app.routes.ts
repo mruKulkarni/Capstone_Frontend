@@ -8,7 +8,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { from } from 'rxjs';
 
 export const routes: Routes = [
-  {path: '', redirectTo:'departments', pathMatch: 'full'}, 
+  {path: '', redirectTo:'login', pathMatch: 'full'}, 
   { path: 'departments', component: DepartmentsComponent }, 
   { path: 'about', component: DepartmentsComponent }, // Temporary - Replace with About Component
   { path: 'profile', component: ProfileComponent },
