@@ -1,7 +1,4 @@
-<h2>Doctor Component Loaded!</h2>
-
-<!-- Display doctors in JSON format -->
-<pre *ngIf="doctors && doctors.length > 0">{{ doctors | json }}</pre>
+<h2>Doctors in this Department</h2>
 
 <!-- Properly formatted doctor details -->
 <div *ngIf="doctors && doctors.length > 0; else noDoctors">

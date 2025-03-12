@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors }
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
-  imports: [ReactiveFormsModule, NgIf, NgFor] // ✅ Import ReactiveFormsModule
+  imports: [ReactiveFormsModule, NgIf, NgFor, CommonModule] // ✅ Import ReactiveFormsModule
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;
