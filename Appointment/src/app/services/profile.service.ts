@@ -13,4 +13,9 @@ export class ProfileService {
   getProfile(email: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${email}`);
   }
+
+  updateProfile(profileData: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/update`, profileData);
+  }
+  
 }
