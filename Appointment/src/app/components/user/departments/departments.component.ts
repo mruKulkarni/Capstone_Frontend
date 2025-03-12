@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './departments.component.html',
   styleUrls: ['./departments.component.css'],
-  imports: [CommonModule, FormsModule, DepartmentFilterPipe, RouterLink]
+  imports: [CommonModule, FormsModule, DepartmentFilterPipe]
 })
 export class DepartmentsComponent implements OnInit {
   departments: any[] = [];

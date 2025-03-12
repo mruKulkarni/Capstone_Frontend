@@ -1,1 +1,9 @@
-<p>confirmation works!</p>
+<div class="container" *ngIf="appointmentDetails">
+    <h2>Appointment Confirmation</h2>
+    <p><strong>Patient Name:</strong> {{ appointmentDetails.userName }}</p>
+    <p><strong>Doctor:</strong> {{ appointmentDetails.doctorName }}</p>
+    <p><strong>Department:</strong> {{ appointmentDetails.department }}</p>
+    <p><strong>Date:</strong> {{ appointmentDetails.date }}</p>
+    <p><strong>Status:</strong> {{ appointmentDetails.status }}</p>
+  </div>
+  <button (click)="goToHome()">Go to Home</button>
