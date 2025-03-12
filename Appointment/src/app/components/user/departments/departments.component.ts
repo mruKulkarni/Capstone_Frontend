@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DepartmentService } from '../../../services/department.service';
 import { DepartmentFilterPipe } from '../../../pipes/department-search.pipe';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-departments',
@@ -16,7 +17,7 @@ export class DepartmentsComponent implements OnInit {
   departments: any[] = [];
   searchText: string = ''; 
 
-  constructor(private departmentService: DepartmentService) {}
+  constructor(private departmentService: DepartmentService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadDepartments();
@@ -35,7 +36,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   onDepartmentClick(department: any) {
-    console.log('Clicked Department:', department);
-    alert(`You selected: ${department.name}`);
+    console.log('Naviagting to department:', department);
+    this.router.navigate(['/departments', department.id]);
   }
 }

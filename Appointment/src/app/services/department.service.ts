@@ -6,11 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DepartmentService {
-  private apiUrl = 'http://localhost:8082/departments'; // Replace with actual API endpoint
+  private apiUrl = 'http://localhost:8082'; // ✅ Ensure correct API base URL
 
   constructor(private http: HttpClient) {}
 
   getDepartments(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/departments`);
+  }
+
+  getDoctorByDepartment(id: number): Observable<any[]> { // ✅ Fix method name
+    const endpoint = `${this.apiUrl}/departments/${id}/doctors`;
+    console.log("Fetching doctors from:", endpoint); // ✅ Debugging log
+    return this.http.get<any[]>(endpoint); // ✅ Directly return Observable
   }
 }
