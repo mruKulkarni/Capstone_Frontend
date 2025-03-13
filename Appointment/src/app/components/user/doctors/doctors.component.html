@@ -1,1 +1,18 @@
-<p>doctors works!</p>
+<h2>Doctor Component Loaded!</h2>
+
+<!-- Display doctors in JSON format -->
+<pre *ngIf="doctors && doctors.length > 0">{{ doctors | json }}</pre>
+
+<!-- Properly formatted doctor details -->
+<div *ngIf="doctors && doctors.length > 0; else noDoctors">
+  <div *ngFor="let doctor of doctors" class="doctor-card">
+    <h3>{{ doctor.name }}</h3>
+    <p><strong>Doctor Code:</strong> {{ doctor.doctorCode }}</p>
+    <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
+    <p><strong>Rating:</strong> ⭐{{ doctor.averageRating }}</p>
+  </div>
+</div>
+
+<ng-template #noDoctors>
+  <p>No doctors available.</p>
+</ng-template>

@@ -1,34 +1,60 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-login',
-  imports :[NgIf, ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterModule], // ✅ Ensure these modules are included
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  loginError: boolean = false;
+  submitted = false;
+  loginError: boolean = false; // Property to manage login error display
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
+    // Initialize the form with validations
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  onLogin() {
-    const { email, password } = this.loginForm.value;
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const userExists = users.some((user: any) => user.email === email && user.password === password);
+  // Getter for easy access to form controls
+  get f(): { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
+  }
 
-    if (userExists) {
-      alert('Login successful!');
-      this.loginError = false;
-    } else {
-      this.loginError = true;
+  // Handle form submission
+  login() {
+    this.submitted = true;
+
+    // Stop if the form is invalid
+    if (this.loginForm.invalid) {
+      return;
     }
+
+    // Call the login service to authenticate the user
+    this.loginService.login(this.loginForm.value).subscribe({
+      next:(response) => {
+        console.log('Login successful!', response);
+        alert('Login successful!');
+        localStorage.setItem("userId",response.email);
+        this.router.navigate(['/departments']); // Redirect to dashboard after successful login
+      },
+      error:
+      (error) => {
+        console.error('Login failed', error);
+        this.loginError = true;  // Set loginError to true to show error message
+        alert('Invalid email or password!');  // Show a generic error alert
+      }}
+    );
+  }
+  goToRegister() {
+    this.router.navigate(['/registration']); // Navigate to the registration page
   }
 }
