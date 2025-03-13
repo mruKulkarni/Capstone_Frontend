@@ -44,6 +44,7 @@ export class LoginComponent {
         console.log('Login successful!', response);
         alert('Login successful!');
         localStorage.setItem("userId",response.email);
+        localStorage.setItem('userName', response.name); 
         this.router.navigate(['/departments']); // Redirect to dashboard after successful login
       },
       error:

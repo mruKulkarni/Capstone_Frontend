@@ -17,4 +17,9 @@ export class DepartmentService {
   addDepartment(departmentName: string): Observable<any> {
     return this.http.post(this.apiAddUrl, { name: departmentName });
   }
+  getDoctorByDepartment(id: number): Observable<any[]> { // ✅ Fix method name
+    const endpoint = `${this.apiUrl}/${id}/doctors`;
+    console.log("Fetching doctors from:", endpoint); // ✅ Debugging log
+    return this.http.get<any[]>(endpoint); // ✅ Directly return Observable
+  }
 }
