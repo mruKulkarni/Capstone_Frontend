@@ -14,12 +14,14 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'Appointment';
   showNavbar: boolean = true; // Controls navbar visibility
+  userName: string = ''; 
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Hide navbar if on login or registration page
         this.showNavbar = !(event.url === '/login' || event.url === '/registration');
+        this.userName = localStorage.getItem('userName') || 'Guest'; 
       }
     });
   }
