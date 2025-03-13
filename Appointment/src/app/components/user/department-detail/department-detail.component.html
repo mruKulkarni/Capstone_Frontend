@@ -1,15 +1,46 @@
-<h2>Doctors in this Department</h2>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Available Doctors</h2>
 
-<!-- Properly formatted doctor details -->
-<div *ngIf="doctors && doctors.length > 0; else noDoctors">
-  <div *ngFor="let doctor of doctors" class="doctor-card">
-    <h3>{{ doctor.name }}</h3>
-    <p><strong>Doctor Code:</strong> {{ doctor.doctorCode }}</p>
-    <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
-    <p><strong>Rating:</strong> ⭐{{ doctor.averageRating }}</p>
+  <div *ngIf="doctors.length > 0; else noData">
+    <div class="row gy-3">
+      <div *ngFor="let doctor of doctors" class="col-12">
+        <div class="card shadow-sm border-0 p-3">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <h3 class="fw-bold">{{ doctor.name }}</h3>
+              <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
+              <p><strong>Rating:</strong> ⭐{{ doctor.averageRating }}</p>
+            </div>
+
+            <div class="col-md-3 text-center">
+              <label class="form-label fw-bold">Select Date:</label>
+              <input type="date" class="form-control" [(ngModel)]="doctor.selectedDate" 
+                     (change)="onDateChange(doctor)" [min]="today">
+            </div>
+
+            <div class="col-md-3 text-center">
+              <label class="form-label fw-bold">Select Time:</label>
+              <select class="form-select" [(ngModel)]="doctor.selectedTime">
+                <option *ngFor="let time of doctor.availableTimes" 
+                        [value]="time" 
+                        [disabled]="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)">
+                  {{ time }} <span *ngIf="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)"> (Booked)</span>
+                </option>
+              </select>
+            </div>
+
+            <div class="col-md-3 text-md-end text-center">
+              <button class="btn btn-primary" (click)="bookAppointment(doctor)" [disabled]="!doctor.selectedTime">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<ng-template #noDoctors>
-  <p>No doctors available.</p>
-</ng-template>
+  <ng-template #noData>
+    <p class="text-center text-danger">No doctors available.</p>
+  </ng-template>
+</div>

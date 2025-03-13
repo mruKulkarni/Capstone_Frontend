@@ -19,7 +19,7 @@ export const routes: Routes = [
   {path:'',component:AppComponent},
   {path:'registration',component:RegistrationComponent},
   {path: 'add-doctor', component: AddDoctorComponent},
-  { path: 'appointment-confirmation', component: ConfirmationComponent }
+  { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'departments/:id', component: DepartmentDetailComponent}
 
 ];
