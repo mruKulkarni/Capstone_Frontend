@@ -6,6 +6,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { from } from 'rxjs';
+import { AddDepartmentComponent } from './components/admin/add-department/add-department.component';
 
 export const routes: Routes = [
   {path: '', redirectTo:'login', pathMatch: 'full'}, 
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'',component:AppComponent},
   {path:'registration',component:RegistrationComponent},
+  {path:'addDepartment',component:AddDepartmentComponent}
 
 ];
 export const appRouting = provideRouter(routes);
