@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
-  imports: [ReactiveFormsModule, NgIf, NgFor] // ✅ Import ReactiveFormsModule
+  imports: [ReactiveFormsModule, NgIf] // ✅ Import ReactiveFormsModule
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;

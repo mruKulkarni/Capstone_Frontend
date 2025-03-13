@@ -8,6 +8,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { from } from 'rxjs';
 import { AddDoctorComponent } from './components/admin/add-doctor/add-doctor.component';
 import { ConfirmationComponent } from './components/user/confirmation/confirmation.component';
+import { ReviewsComponent } from './components/user/reviews/reviews.component';
 
 export const routes: Routes = [
   {path: '', redirectTo:'departments', pathMatch: 'full'}, 
@@ -18,7 +19,8 @@ export const routes: Routes = [
   {path:'',component:AppComponent},
   {path:'registration',component:RegistrationComponent},
   {path: 'add-doctor', component: AddDoctorComponent},
-  { path: 'appointment-confirmation', component: ConfirmationComponent }
+  { path: 'appointment-confirmation', component: ConfirmationComponent },
+  {path: 'review', component: ReviewsComponent}
 ];
 export const appRouting = provideRouter(routes);
 

@@ -1,1 +1,36 @@
-<p>reviews works!</p>
+<div class="review-container">
+    <h2>Review</h2>
+  
+    <div *ngIf="appointment">
+      <h2>Latest Appointment Details</h2>
+      <p><strong>Status:</strong> {{ appointment?.status }}</p>
+      <p><strong>Slot:</strong> {{ appointment?.slot }}</p>
+    
+      <h3>Doctor Details</h3>
+      <p><strong>Name:</strong> {{ appointment?.doctor?.name }}</p>
+      <p><strong>Qualification:</strong> {{ appointment?.doctor?.qualification }}</p>
+      <p><strong>Average Rating:</strong> {{ appointment?.doctor?.averageRating }}</p>
+    </div>
+    
+    <!-- If data is still loading -->
+    <div *ngIf="!appointment">
+      <p>Loading appointment details...</p>
+    </div>
+    
+  
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+      <label for="rating">Rating:</label>
+      <select formControlName="rating" required>
+        <option *ngFor="let star of [1,2,3,4,5]" [value]="star">{{ star }} ★</option>
+      </select>
+  
+      <label for="comments">Comments:</label>
+      <textarea formControlName="comments" placeholder="Optional feedback"></textarea>
+  
+      <div class="button-group">
+        <button type="button" class="skip-btn" (click)="skipReview()">Skip</button>
+        <button type="submit" [disabled]="reviewForm.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
+  
