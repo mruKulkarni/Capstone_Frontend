@@ -9,6 +9,7 @@ import { from } from 'rxjs';
 import { AddDoctorComponent } from './components/admin/add-doctor/add-doctor.component';
 import { ConfirmationComponent } from './components/user/confirmation/confirmation.component';
 import { DepartmentDetailComponent } from './components/user/department-detail/department-detail.component';
+import { ReviewsComponent } from './components/user/reviews/reviews.component';
 import { AddDepartmentComponent } from './components/admin/add-department/add-department.component';
 import { AboutUsComponent } from './components/user/about-us/about-us.component';
 
@@ -23,8 +24,12 @@ export const routes: Routes = [
   {path: 'add-doctor', component: AddDoctorComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'departments/:id', component: DepartmentDetailComponent},
+  { path: 'appointment-confirmation', component: ConfirmationComponent },
+  {path: 'departments/:id', component: DepartmentDetailComponent},
   {path:'addDepartment',component:AddDepartmentComponent}
 
+  { path: 'appointment-confirmation', component: ConfirmationComponent },
+  {path: 'review', component: ReviewsComponent}
 ];
 export const appRouting = provideRouter(routes);
 
