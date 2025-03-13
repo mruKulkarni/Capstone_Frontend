@@ -1,1 +1,27 @@
-<p>add-doctor works!</p>
+<div class="container">
+    <h2>Add Doctor</h2>
+    <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()">
+      
+      <label>Doctor Code:</label>
+      <input type="text" formControlName="doctorCode" required /><br>
+  
+      <label>Name:</label>
+      <input type="text" formControlName="name" required /><br>
+  
+      <label>Qualification:</label>
+      <input type="text" formControlName="qualification" required /><br>
+  
+      <label>Department:</label>
+      <select formControlName="departmentId" required>
+        <option *ngFor="let dept of departments" [value]="dept.id">
+          {{ dept.name }}
+        </option>
+      </select><br>
+  
+      <label>Average Rating:</label>
+      <input type="number" formControlName="averageRating" step="0.1" min="0" max="5" /><br>
+  
+      <button type="submit" [disabled]="doctorForm.invalid">Add Doctor</button>
+    </form>
+  </div>
+  

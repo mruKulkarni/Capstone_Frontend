@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router'; // Import Router
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router'; // Import Router
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
   imports: [ReactiveFormsModule, NgIf, NgFor]
+  imports: [ReactiveFormsModule, NgIf, NgFor, CommonModule] // ✅ Import ReactiveFormsModule
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;
