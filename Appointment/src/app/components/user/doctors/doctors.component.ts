@@ -17,4 +17,9 @@ export class DoctorComponent implements OnChanges {
       console.log("Doctors received in DoctorComponent:", JSON.stringify(changes['doctors'].currentValue, null, 2)); // ✅ Stringify doctors
     }
   }
+
+  bookAppointment(doctor: any) {
+    alert(`Booking appointment for ${doctor.name}`);
+    // Navigate to booking page or open a modal here
+  }
 }
