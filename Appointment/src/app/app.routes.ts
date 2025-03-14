@@ -26,8 +26,7 @@ export const routes: Routes = [
   {path: 'departments/:id', component: DepartmentDetailComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'departments/:id', component: DepartmentDetailComponent},
-  {path:'addDepartment',component:AddDepartmentComponent}
-
+  {path:'addDepartment',component:AddDepartmentComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'review', component: ReviewsComponent}
 ];
