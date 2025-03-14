@@ -3,13 +3,13 @@
   
     <div *ngIf="appointment">
       <h2>Latest Appointment Details</h2>
-      <p><strong>Status:</strong> {{ appointment?.status }}</p>
+      <!-- <p><strong>Status:</strong> {{ appointment?.status }}</p> -->
+      <p><strong>Date:</strong> {{ appointment?.date }}</p>
       <p><strong>Slot:</strong> {{ appointment?.slot }}</p>
     
       <h3>Doctor Details</h3>
-      <p><strong>Name:</strong> {{ appointment?.doctor?.name }}</p>
-      <p><strong>Qualification:</strong> {{ appointment?.doctor?.qualification }}</p>
-      <p><strong>Average Rating:</strong> {{ appointment?.doctor?.averageRating }}</p>
+      <p><strong>Name:</strong> {{ appointment?.doctorName }}</p>
+      <p><strong>Department:</strong> {{ appointment?.department }}</p>
     </div>
     
     <!-- If data is still loading -->

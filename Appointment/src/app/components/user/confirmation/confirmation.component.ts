@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ConfirmationComponent implements OnInit{
   appointmentDetails: any;
-  userId: number = 1; // Replace with dynamic user ID from authentication
+  userId: number = Number(localStorage.getItem('userNumber'));
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private confirmationService = inject(ConfirmationService);
@@ -24,6 +24,7 @@ export class ConfirmationComponent implements OnInit{
   getAppointmentDetails(): void {
     this.confirmationService.getAppointmentConfirmation(this.userId).subscribe(
       (data) => {
+        console.log(data);
         this.appointmentDetails = data;
       },
       (error) => {
