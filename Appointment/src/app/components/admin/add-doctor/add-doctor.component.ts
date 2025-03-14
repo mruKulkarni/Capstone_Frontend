@@ -26,21 +26,21 @@ export class AddDoctorComponent implements OnInit {
   });
 
   departments: any[] = []; // Holds department data
-constructor(private departmentService: DepartmentService) {}
+  constructor(private departmentService: DepartmentService) { }
   ngOnInit() {
     this.fetchDepartments();
   }
 
   fetchDepartments() {
-    this.departmentService.getDepartments().subscribe(
-      data => {
+    this.departmentService.getDepartments().subscribe({
+      next: data => {
         console.log('Departments received:', data);
         this.departments = data;
       },
-      error => {
+      error: error => {
         console.error('Error fetching departments:', error);
       }
-    );
+    });
   }
 
   onSubmit() {

@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
-  imports: [ReactiveFormsModule, NgIf, NgFor, CommonModule] // ✅ Import ReactiveFormsModule
+  imports: [ReactiveFormsModule, NgIf, CommonModule] // ✅ Import ReactiveFormsModule
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;
