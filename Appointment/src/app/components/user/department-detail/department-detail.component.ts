@@ -12,7 +12,7 @@ import { filter } from 'rxjs';
   standalone: true,
   templateUrl: './department-detail.component.html',
   styleUrls: ['./department-detail.component.css'],
-  imports: [CommonModule, DoctorComponent, FormsModule]
+  imports: [CommonModule, FormsModule]
 })
 export class DepartmentDetailComponent implements OnInit {
   departmentId!: number;
@@ -131,6 +131,7 @@ export class DepartmentDetailComponent implements OnInit {
     this.http.post('http://localhost:8082/appointments/book', appointmentData).subscribe({
       next: () => {
         alert(`Appointment booked for ${doctor.name} on ${doctor.selectedDate} at ${doctor.selectedTime}`);
+        this.router.navigate(['/appointment-confirmation']);
 
         if (!doctor.bookedSlotsByDate[doctor.selectedDate]) {
           doctor.bookedSlotsByDate[doctor.selectedDate] = [];

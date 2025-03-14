@@ -13,7 +13,10 @@ import { CommonModule } from '@angular/common';
 export class ReviewsComponent implements OnInit {
   reviewForm: FormGroup;
   appointment: any;
-  userId = 1; // Replace with actual user ID from authentication
+  //userId= 1;
+  //userId = localStorage.getItem('userNumber')
+  userId: number = Number(localStorage.getItem('userNumber')) ;
+
 
   constructor(private reviewService: ReviewService, private fb: FormBuilder, private router: Router) {
     this.reviewForm = this.fb.group({
@@ -42,13 +45,14 @@ export class ReviewsComponent implements OnInit {
         rating: this.reviewForm.value.rating,
         comments: this.reviewForm.value.comments,
         userId: this.userId, // Include userId
-        doctorId: this.appointment?.doctor?.id // Include doctorId
+        doctorId:  this.appointment.doctorId
       };
   
       console.log('Submitting review:', reviewData); // Debugging log
   
       this.reviewService.submitReview(reviewData).subscribe({
-        next: () => {
+        next: (response) => {
+          console.log("review response",response);
           alert('Review submitted successfully!');
           this.router.navigate(['/departments']); // Redirect after submission
         },
