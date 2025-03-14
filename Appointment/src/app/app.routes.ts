@@ -1,4 +1,4 @@
-import { provideRouter, Routes } from '@angular/router';
+import { provideRouter, Routes, withComponentInputBinding } from '@angular/router';
 import { DepartmentService } from './services/department.service';
 import { DepartmentsComponent } from './components/user/departments/departments.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
@@ -31,5 +31,5 @@ export const routes: Routes = [
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'review', component: ReviewsComponent}
 ];
-export const appRouting = provideRouter(routes);
+export const appRouting = provideRouter(routes, withComponentInputBinding());
 
