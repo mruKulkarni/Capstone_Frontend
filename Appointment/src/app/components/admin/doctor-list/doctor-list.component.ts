@@ -1,11 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-doctor-list',
-  imports: [],
   templateUrl: './doctor-list.component.html',
-  styleUrl: './doctor-list.component.css'
+  styleUrls: ['./doctor-list.component.css'],
+  imports: [CommonModule]
 })
-export class DoctorListComponent {
+export class DoctorListComponent implements OnInit {
+  doctors: any[] = [];
 
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.loadDoctors();
+  }
+
+  loadDoctors() {
+    this.http.get<any[]>('/api/admin/doctors').subscribe(data => {
+      this.doctors = data;
+    });
+  }
+
+  deleteDoctor(id: number) {
+    if (confirm('Are you sure you want to delete this doctor?')) {
+      this.http.delete(`/doctors/${id}`).subscribe(() => {
+        alert('Doctor deleted successfully');
+        this.loadDoctors(); // Refresh the list
+      }, error => {
+        alert('Failed to delete doctor');
+      });
+    }
+  }
 }

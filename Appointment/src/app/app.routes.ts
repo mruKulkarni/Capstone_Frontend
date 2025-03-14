@@ -12,6 +12,7 @@ import { DepartmentDetailComponent } from './components/user/department-detail/d
 import { ReviewsComponent } from './components/user/reviews/reviews.component';
 import { AddDepartmentComponent } from './components/admin/add-department/add-department.component';
 import { AboutUsComponent } from './components/user/about-us/about-us.component';
+import { DoctorListComponent } from './components/admin/doctor-list/doctor-list.component';
 
 export const routes: Routes = [
   {path: '', redirectTo:'login', pathMatch: 'full'}, 
@@ -28,7 +29,8 @@ export const routes: Routes = [
   {path: 'departments/:id', component: DepartmentDetailComponent},
   {path:'addDepartment',component:AddDepartmentComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
-  {path: 'review', component: ReviewsComponent}
+  {path: 'review', component: ReviewsComponent},
+  {path: 'doctor-list', component: DoctorListComponent}
 ];
 export const appRouting = provideRouter(routes, withComponentInputBinding());
 
