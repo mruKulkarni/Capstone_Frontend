@@ -47,7 +47,7 @@ export class DepartmentDetailComponent implements OnInit {
         if (Array.isArray(response) && response.length > 0) {
           this.doctors = response.map(doctor => ({
             ...doctor,
-            selectedDate: this.today,
+            selectedDate: '',
             selectedTime: '',
             bookedSlotsByDate: {},
             availableTimes: [...this.availableTimes]
@@ -67,16 +67,31 @@ export class DepartmentDetailComponent implements OnInit {
     });
   }
 
-  onDateChange(doctor: any) {
-    doctor.selectedTime = '';
-    doctor.availableTimes = [...this.availableTimes];
-
-    const selectedDate = new Date(doctor.selectedDate);
-    doctor.selectedDate = selectedDate.toISOString().split('T')[0];
-
-    this.getBookedSlotsForDoctor(doctor.id, doctor.selectedDate);
+  getTomorrowDate(): string {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1); // ✅ Move to next day
+    return tomorrow.toISOString().split('T')[0];
   }
 
+  onDateChange(doctor: any) {
+    doctor.selectedTime = ''; // Reset selected time
+    doctor.availableTimes = [...this.availableTimes];
+  
+    const selectedDate = new Date(doctor.selectedDate);
+    doctor.selectedDate = selectedDate.toISOString().split('T')[0];
+  
+    // ✅ Block booking for today
+    if (doctor.selectedDate === this.today) {
+      alert("Booking for today is not allowed. Please select another date.");
+      doctor.selectedDate = ''; // Reset date selection
+      return;
+    }
+  
+    this.getBookedSlotsForDoctor(doctor.id, doctor.selectedDate);
+  }
+  
+
+  
   getBookedSlotsForDoctor(doctorId: number, date: string) {
     this.http.get<string[]>(`http://localhost:8082/appointments/booked-slots/${doctorId}/${date}`).subscribe({
       next: (bookedSlots) => {
