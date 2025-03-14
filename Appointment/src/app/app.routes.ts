@@ -19,15 +19,14 @@ export const routes: Routes = [
   { path: 'about', component: AboutUsComponent }, // Temporary - Replace with About Component
   { path: 'profile', component: ProfileComponent },
   {path:'login',component:LoginComponent},
-  {path:'',component:AppComponent},
+  //{path:'',component:AppComponent},
   {path:'registration',component:RegistrationComponent},
   {path: 'add-doctor', component: AddDoctorComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'departments/:id', component: DepartmentDetailComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'departments/:id', component: DepartmentDetailComponent},
-  {path:'addDepartment',component:AddDepartmentComponent}
-
+  {path:'addDepartment',component:AddDepartmentComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'review', component: ReviewsComponent}
 ];

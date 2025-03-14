@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   templateUrl: './department-detail.component.html',
   styleUrls: ['./department-detail.component.css'],
-  imports: [CommonModule, DoctorComponent, FormsModule]
+  imports: [CommonModule, FormsModule]
 })
 export class DepartmentDetailComponent implements OnInit {
   departmentId!: number;
