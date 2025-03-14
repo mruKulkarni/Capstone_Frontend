@@ -14,8 +14,7 @@
 
             <div class="col-md-3 text-center">
               <label class="form-label fw-bold">Select Date:</label>
-              <input type="date" class="form-control" [(ngModel)]="doctor.selectedDate" 
-                     (change)="onDateChange(doctor)" [min]="today">
+              <input type="date" class="form-control" [(ngModel)]="doctor.selectedDate" (change)="onDateChange(doctor)" [min]="getTomorrowDate()">
             </div>
 
             <div class="col-md-3 text-center">
@@ -24,13 +23,15 @@
                 <option *ngFor="let time of doctor.availableTimes" 
                         [value]="time" 
                         [disabled]="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)">
-                  {{ time }} <span *ngIf="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)"> (Booked)</span>
+                  {{ time }} 
+                  <span *ngIf="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)"> (Booked)</span>
                 </option>
               </select>
             </div>
 
             <div class="col-md-3 text-md-end text-center">
-              <button class="btn btn-primary" (click)="bookAppointment(doctor)" [disabled]="!doctor.selectedTime">
+              <button class="btn btn-primary" (click)="bookAppointment(doctor)" 
+                      [disabled]="!doctor.selectedTime || doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(doctor.selectedTime)">
                 Book Now
               </button>
             </div>
