@@ -1,4 +1,6 @@
 <div class="container mt-4">
+
+  <h1 class="text-center mb-4">{{ departmentName }} Department</h1>
   <h2 class="text-center mb-4">Available Doctors</h2>
 
   <div *ngIf="doctors.length > 0; else noData">
@@ -8,18 +10,27 @@
           <div class="row align-items-center">
             <div class="col-md-6">
               <h3 class="fw-bold">{{ doctor.name }}</h3>
+              <p><strong>License Number:</strong> {{ doctor.doctorCode }}</p>
               <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
               <p><strong>Rating:</strong> ⭐{{ doctor.averageRating }}</p>
             </div>
 
+            <!-- Date Selection -->
             <div class="col-md-3 text-center">
               <label class="form-label fw-bold">Select Date:</label>
-              <input type="date" class="form-control" [(ngModel)]="doctor.selectedDate" (change)="onDateChange(doctor)" [min]="getTomorrowDate()">
+              <input type="date" class="form-control" [(ngModel)]="doctor.selectedDate" 
+                  (change)="onDateChange(doctor)" [min]="getTomorrowDate()" [max]="getMaxDate()">
+              <button class="btn btn-secondary mt-2" (click)="fetchTimeSlots(doctor)" 
+                      [disabled]="!doctor.selectedDate">
+                Fetch Time Slots
+              </button>
             </div>
 
+            <!-- Time Selection (Disabled until slots are fetched) -->
             <div class="col-md-3 text-center">
-              <label class="form-label fw-bold">Select Time:</label>
-              <select class="form-select" [(ngModel)]="doctor.selectedTime">
+              <label class="form-label fw-bold">Select Time Slot:</label>
+              <select class="form-select" [(ngModel)]="doctor.selectedTime" 
+                      [disabled]="!doctor.timeSlotsFetched">
                 <option *ngFor="let time of doctor.availableTimes" 
                         [value]="time" 
                         [disabled]="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)">
@@ -29,6 +40,7 @@
               </select>
             </div>
 
+            <!-- Book Appointment Button -->
             <div class="col-md-3 text-md-end text-center">
               <button class="btn btn-primary" (click)="bookAppointment(doctor)" 
                       [disabled]="!doctor.selectedTime || doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(doctor.selectedTime)">
