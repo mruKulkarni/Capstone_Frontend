@@ -14,6 +14,8 @@ import { filter } from 'rxjs';
   imports: [CommonModule, FormsModule]
 })
 export class DepartmentDetailComponent implements OnInit {
+  isAdmin: boolean = false;
+
   departmentId!: number;
   departmentName: string = ''; // ✅ Store department name
   doctors: any[] = [];
@@ -29,6 +31,7 @@ export class DepartmentDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isAdmin = localStorage.getItem('isAdmin') === 'true'; 
     this.today = new Date().toISOString().split('T')[0];
     this.departmentId = Number(this.route.snapshot.paramMap.get('id'));
     this.getDepartmentName(this.departmentId);
@@ -41,6 +44,34 @@ export class DepartmentDetailComponent implements OnInit {
       this.getDoctorsByDepartment(this.departmentId);
     });
   }
+
+
+  // deleteDoctor(id: number) {
+  //   if (confirm('Are you sure you want to delete this doctor?')) {
+  //     this.http.delete(`http://localhost:8082/doctors/${id}`).subscribe(() => {
+  //       alert('Doctor deleted successfully');
+  //       this.getDoctorsByDepartment(this.departmentId); // ✅ Refresh doctor list after deletion
+  //     }, error => {
+  //       alert('Failed to delete doctor');
+  //     });
+  //   }
+  // }
+
+  deleteDoctor(id: number) {
+    if (confirm('Are you sure you want to delete this doctor?')) {
+      this.http.put(`http://localhost:8082/doctors/${id}/deactivate`, {}, { responseType: 'text' }).subscribe({
+        next: () => {
+          alert('Doctor deactivated successfully');
+          this.getDoctorsByDepartment(this.departmentId); // ✅ Refresh doctor list after soft delete
+        },
+        error: (error) => {
+          console.error('Error deactivating doctor:', error);
+          alert('Failed to deactivate doctor. Please try again.');
+        }
+      });
+    }
+  }
+  
 
   getDepartmentName(id: number) {
     this.http.get<any>(`http://localhost:8082/departments/${id}`).subscribe({

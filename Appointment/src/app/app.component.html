@@ -1,24 +1,24 @@
-<a routerLink="/add-doctor">Add Doctor</a><br>
+<!-- <a routerLink="/add-doctor">Add Doctor</a><br> -->
 <a routerLink="/review">Review</a><br>
-<a routerLink="addDepartment">Add Department</a><br>
-<a routerLink="/doctor-list">Admin: View and Delete Doctors</a><br>
+<!--<a routerLink="addDepartment">Add Department</a><br>
+<a routerLink="/doctor-list">Admin: View and Delete Doctors</a><br> -->
 <!-- Navbar (Only show when NOT on login or registration page) -->
-<nav *ngIf="showNavbar" class="navbar navbar-expand-lg" style="background-color: #9bbcdc; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-  <div class="container">
+<!-- <nav *ngIf="showNavbar" class="navbar navbar-expand-lg" style="background-color: #9bbcdc; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <div class="container"> -->
     
     <!-- Logo (Non-clickable) -->
-    <div class="navbar-brand d-flex align-items-center">
+    <!-- <div class="navbar-brand d-flex align-items-center"> -->
       <!-- <img src="assets/logo.png" alt="Logo" width="40" height="40" class="me-2"> -->
-      <span class="fw-bold text-dark">Hi, {{userName}}</span>
-    </div>
+      <!-- <span class="fw-bold text-dark">Hi, {{userName}}</span>
+    </div> -->
 
     <!-- Navbar Toggler for Mobile -->
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <!-- <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
 
     <!-- Navbar Links (as Buttons) -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <!-- <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
           <button class="btn btn-primary me-2" routerLink="/departments">Home</button>
@@ -33,9 +33,65 @@
     </div>
 
   </div>
+</nav> -->
+
+<!-- Page Content Below Navbar -->
+<!-- <div class="container mt-4">
+  <router-outlet></router-outlet>
+</div> -->
+
+<nav *ngIf="showNavbar" class="navbar navbar-expand-lg" style="background-color: #9bbcdc; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <div class="container">
+
+    <!-- Logo (Non-clickable) -->
+    <div class="navbar-brand d-flex align-items-center">
+      <span class="fw-bold text-dark">Hi, {{ userName }}</span>
+    </div>
+
+    <!-- Navbar Toggler for Mobile -->
+    <button class="navbar-toggler border-0" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links (Admin View) -->
+    <div [ngClass]="{'collapse navbar-collapse': true, 'show': isNavbarOpen}" id="navbarNav">
+      <ul class="navbar-nav" *ngIf="isAdmin">
+        <li class="nav-item">
+          <button class="btn btn-primary me-2" routerLink="/departments" (click)="closeNavbar()">Home</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary me-2" routerLink="/add-doctor" (click)="closeNavbar()">Add Doctor</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary me-2" routerLink="/addDepartment" (click)="closeNavbar()">Add Department</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-danger" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+
+      <!-- Navbar Links (Regular User View) -->
+      <ul class="navbar-nav" *ngIf="!isAdmin">
+        <li class="nav-item">
+          <button class="btn btn-primary me-2" routerLink="/departments" (click)="closeNavbar()">Home</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary me-2" routerLink="/about" (click)="closeNavbar()">About Us</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary me-2" routerLink="/profile" (click)="closeNavbar()">Profile</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-danger" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
 </nav>
 
 <!-- Page Content Below Navbar -->
 <div class="container mt-4">
   <router-outlet></router-outlet>
 </div>
+
