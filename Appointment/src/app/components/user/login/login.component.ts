@@ -46,6 +46,8 @@ export class LoginComponent {
         localStorage.setItem("userId",response.email);
         localStorage.setItem('userName', response.name); 
         localStorage.setItem('userNumber', response.id);
+        const adminEmail = "admin@example.com";  // Change this to your actual admin email
+        localStorage.setItem('isAdmin', response.email === adminEmail ? 'true' : 'false');
         this.router.navigate(['/departments']); // Redirect to dashboard after successful login
       },
       error:
