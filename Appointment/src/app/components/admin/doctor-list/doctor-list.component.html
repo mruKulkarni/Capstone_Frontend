@@ -1,1 +1,22 @@
 <p>doctor-list works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doctor of doctors">
+        <td>{{ doctor.id }}</td>
+        <td>{{ doctor.name }}</td>
+        <td>{{ doctor.department }}</td>
+        <td>
+          <button (click)="deleteDoctor(doctor.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
