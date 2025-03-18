@@ -1,0 +1,53 @@
+<table>
+    <thead>
+      <tr>
+        <th>Doctor</th>
+        <th>Department</th>
+        <th>Date</th>
+        <th>Slot</th>
+        <th>Status</th>
+        <th>Review</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of appointments">
+        <td>{{ appointment.doctorName }}</td>
+        <td>{{ appointment.department }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.slot }}</td>
+        <td>{{ appointment.status }}</td>
+        <td>
+          <!-- If review exists, display rating and comment -->
+          <div *ngIf="appointment.reviewSubmitted">
+            ⭐ {{ appointment.rating }}/5
+            <p>{{ appointment.comment }}</p>
+          </div>
+  
+          <!-- Show button for submitting review if not already submitted -->
+          <button 
+            *ngIf="!appointment.reviewSubmitted"
+            [disabled]="appointment.status !== 'Completed'"
+            (click)="openReviewForm(appointment)">
+            Submit Review
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Review Form (only visible when a user selects an appointment) -->
+  <div *ngIf="selectedAppointment" class="review-form">
+    <h3>Submit Review for {{ selectedAppointment.doctorName }}</h3>
+  
+    <label>Rating:</label>
+    <select [(ngModel)]="reviewData.rating">
+      <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }}</option>
+    </select>
+  
+    <label>Comment:</label>
+    <textarea [(ngModel)]="reviewData.comment"></textarea>
+  
+    <button (click)="submitReview()">Submit</button>
+    <button (click)="cancelReview()">Cancel</button>
+  </div>
+  

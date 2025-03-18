@@ -1,0 +1,32 @@
+<div class="appointments-container">
+  <h2>Manage Appointments</h2>
+
+  <table *ngIf="appointments.length > 0" class="appointments-table">
+    <thead>
+      <tr>
+        <th>Doctor Name</th>
+        <th>User Name</th>
+        <th>Department</th>
+        <th>Date</th>
+        <th>Slot</th>
+        <th>Status</th>
+        <th>Actions</th> <!-- New column for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of appointments">
+        <td>{{ appointment.doctorName }}</td>
+        <td>{{ appointment.userName }}</td>
+        <td>{{ appointment.department }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.slot }}</td>
+        <td>{{ appointment.status }}</td>
+        <td>
+          <button *ngIf="appointment.status !== 'Completed'" (click)="markCompleted(appointment)" >Mark as Completed</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="appointments.length === 0">No appointments available.</p>
+</div>
