@@ -31,7 +31,7 @@ export const routes: Routes = [
   {path:'addDepartment',component:AddDepartmentComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'review', component: ReviewsComponent},
-  {path: 'doctor-list', component: DoctorListComponent}
+  {path: 'doctor-list', component: DoctorListComponent},
   {path: 'review', component: ReviewsComponent},
   {path:'all-appointments',component:ManageAppointmentComponent}
 ];

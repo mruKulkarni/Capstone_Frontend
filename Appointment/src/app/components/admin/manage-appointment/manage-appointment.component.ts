@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-  // Adjust the import path
-AppointmentManageDTO // Adjust the import path
 import { AppointmentService } from '../../../services/appointment.service';
 import { AppointmentManageDTO } from '../../../entity/appointment.service';
 import { CommonModule } from '@angular/common';
@@ -20,12 +18,32 @@ export class ManageAppointmentComponent implements OnInit {
   ngOnInit(): void {
     // Fetch appointments when the component initializes
     this.appointmentService.getAllAppointments().subscribe({
-      next:(data) => {
+      next: (data) => {
         this.appointments = data;
+        console.log('Appointments:', this.appointments); 
       },
-      error:(error) => {
+      error: (error) => {
         console.error('Error fetching appointments:', error);
-      }}
-    );
+      }
+    });
   }
+
+  // Mark appointment as Completed
+  markCompleted(appointment: AppointmentManageDTO): void {
+    // Ensure appointment has the 'appointmentId' property and call the service to update the status
+    this.appointmentService.updateAppointmentStatus(appointment.appointmentId, 'Completed').subscribe({
+      next: (updatedAppointment) => {
+        // Update the status locally after the backend update
+        const index = this.appointments.findIndex(app => app.appointmentId === appointment.appointmentId);  // Use appointmentId here
+        if (index !== -1) {
+          this.appointments[index].status = 'Completed';
+        }
+      },
+      error: (error) => {
+        console.error('Error updating appointment status:', error);
+      }
+    });
+  }
+  
+  
 }

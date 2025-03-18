@@ -1,13 +1,15 @@
 export class AppointmentManageDTO {
+  appointmentId: number;  // Use 'appointmentId' here
   doctorId: number;
   userName: string;
   doctorName: string;
   department: string;
-  date: string;  // Depending on how you handle the date format, you may need a Date type or string
+  date: string;
   slot: string;
   status: string;
 
   constructor(
+    appointmentId: number,  // Use 'appointmentId' here
     doctorId: number,
     userName: string,
     doctorName: string,
@@ -16,6 +18,7 @@ export class AppointmentManageDTO {
     slot: string,
     status: string
   ) {
+    this.appointmentId = appointmentId;  // Use 'appointmentId' here
     this.doctorId = doctorId;
     this.userName = userName;
     this.doctorName = doctorName;
