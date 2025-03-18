@@ -13,6 +13,7 @@ import { ReviewsComponent } from './components/user/reviews/reviews.component';
 import { AddDepartmentComponent } from './components/admin/add-department/add-department.component';
 import { AboutUsComponent } from './components/user/about-us/about-us.component';
 import { DoctorListComponent } from './components/admin/doctor-list/doctor-list.component';
+import { UserAppointmentsComponent } from './components/user/user-appointments/user-appointments.component';
 import { ManageAppointmentComponent } from './components/admin/manage-appointment/manage-appointment.component';
 
 export const routes: Routes = [
@@ -31,6 +32,8 @@ export const routes: Routes = [
   {path:'addDepartment',component:AddDepartmentComponent},
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'review', component: ReviewsComponent},
+  {path: 'doctor-list', component: DoctorListComponent},
+  {path: 'user-appointments', component: UserAppointmentsComponent}
   {path: 'doctor-list', component: DoctorListComponent},
   {path: 'review', component: ReviewsComponent},
   {path:'all-appointments',component:ManageAppointmentComponent}

@@ -18,19 +18,18 @@
   </div>
   
   <div *ngIf="departments.length > 0; else noData" class="row g-4">
-    <div *ngFor="let department of departments | departmentFilter:searchText" class="col-md-4 col-sm-6 mb-4">
+    <div *ngFor="let department of departments" class="col-md-4 col-sm-6 mb-4">
       <div class="btn-group w-100">
-        <button class="btn btn-outline-primary w-100 py-4 fs-5 fw-bold" (click)="onDepartmentClick(department)" [disabled]="!department.hasDoctors">
+        <button 
+          class="btn btn-outline-primary w-100 py-4 fs-5 fw-bold" 
+          (click)="onDepartmentClick(department)" 
+          [disabled]="department.isDisabled">
           {{ department.name }}
         </button>
-        <!-- <button class="btn btn-danger w-25 py-3" (click)="onDeleteDepartment(department)">
-          🗑️
-        </button> -->
       </div>
     </div>
   </div>
-
+  
   <ng-template #noData>
     <p class="text-center text-muted">No departments available.</p>
   </ng-template>
-</div>

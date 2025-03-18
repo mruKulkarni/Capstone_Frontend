@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { DepartmentService } from '../../../services/department.service';
 import { DepartmentFilterPipe } from '../../../pipes/department-search.pipe';
-import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,16 +26,27 @@ export class DepartmentsComponent implements OnInit {
     this.departmentService.getDepartments().subscribe(
       data => {
         console.log('Departments received:', data);
-        this.departments = data;
+  
+        this.departments = data.map(department => ({
+          ...department,
+          isDisabled: department.hasDoctors === false // Disable if hasDoctors is false
+        }));
+  
+        console.log('Updated departments:', this.departments);
       },
       error => {
         console.error('Error fetching departments:', error);
       }
     );
   }
+  
 
   onDepartmentClick(department: any) {
-    console.log('Naviagting to department:', department);
-    this.router.navigate(['/departments', department.id]);
+    if (!department.isDisabled) {
+      console.log('Navigating to department:', department);
+      this.router.navigate(['/departments', department.id]);
+    } else {
+      console.log('Department is disabled, cannot navigate.');
+    }
   }
 }

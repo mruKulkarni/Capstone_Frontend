@@ -1,30 +1,27 @@
 <div class="container mt-5">
-  <div class="card shadow-lg p-5">
-    <div class="card-header text-white bg-secondary text-center">
-      <h2>👤 Profile Details</h2>
+  <div class="card shadow-lg p-4">
+    <div class="card-header text-white bg-primary text-center">
+      <h2>👤 User Profile</h2>
     </div>
+
     <div class="card-body">
-      <table class="table table-bordered">
-        <tr>
-          <th>Name:</th>
-          <td>{{ profile.name }}</td>
-        </tr>
-        <tr>
-          <th>Email:</th>
-          <td>{{ profile.email }}</td>
-        </tr>
-        <tr>
-          <th>Age:</th>
-          <td>{{ profile.age }}</td>
-        </tr>
-        <tr>
-          <th>Phone:</th>
-          <td>{{ profile.phone }}</td>
-        </tr>
+      <table class="table table-bordered" *ngIf="!isEditing">
+        <tr><th>Name:</th><td>{{ profile.name }}</td></tr>
+        <tr><th>Age:</th><td>{{ profile.age }}</td></tr>
+        <tr><th>Phone:</th><td>{{ profile.phone }}</td></tr>
+        <tr><th>Email:</th><td>{{ profile.email }}</td></tr>
       </table>
-    </div>
-    <div class="card-footer text-center">
-      <button class="btn btn-primary" routerLink="/profile/edit">Edit Profile</button>
+
+      <div class="text-center">
+        <button class="btn btn-warning" (click)="toggleEdit()">Edit Profile</button>
+      </div>
+
+      <form *ngIf="isEditing" (ngSubmit)="saveProfile()">
+        <input type="text" class="form-control" [(ngModel)]="profile.name" name="name" required />
+        <input type="number" class="form-control" [(ngModel)]="profile.age" name="age" required />
+        <input type="text" class="form-control" [(ngModel)]="profile.phone" name="phone" required />
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>
     </div>
   </div>
 </div>
