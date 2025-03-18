@@ -1,4 +1,6 @@
-<table>
+<div class="appointments-container">
+<h2>All Appointments</h2>
+<table *ngIf="appointments.length > 0">
     <thead>
       <tr>
         <th>Doctor</th>
@@ -50,4 +52,5 @@
     <button (click)="submitReview()">Submit</button>
     <button (click)="cancelReview()">Cancel</button>
   </div>
-  
+  <p *ngIf="appointments.length === 0">No appointments available.</p>
+</div>

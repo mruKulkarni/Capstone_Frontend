@@ -1,6 +1,6 @@
 <!-- <a routerLink="/add-doctor">Add Doctor</a><br> -->
-<a routerLink="/review">Review</a><br>
-<a routerLink="/all-appointments">Manage Appointments</a>
+<!-- <a routerLink="/review">Review</a><br> -->
+<!-- <a routerLink="/all-appointments">Manage Appointments</a> -->
 <!--<a routerLink="addDepartment">Add Department</a><br>
 <a routerLink="/doctor-list">Admin: View and Delete Doctors</a><br> -->
 <!-- Navbar (Only show when NOT on login or registration page) -->
@@ -55,13 +55,16 @@
     <div [ngClass]="{'collapse navbar-collapse': true, 'show': isNavbarOpen}" id="navbarNav">
       <ul class="navbar-nav" *ngIf="isAdmin">
         <li class="nav-item">
-          <button class="btn btn-primary me-2" routerLink="/departments" (click)="closeNavbar()">Home</button>
+          <button class="btn btn-primary me-2" routerLink="/departments" (click)="closeNavbar()">All Departments</button>
         </li>
         <li class="nav-item">
           <button class="btn btn-primary me-2" routerLink="/add-doctor" (click)="closeNavbar()">Add Doctor</button>
         </li>
         <li class="nav-item">
           <button class="btn btn-primary me-2" routerLink="/addDepartment" (click)="closeNavbar()">Add Department</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary me-2" routerLink="/all-appointments" (click)="closeNavbar()">All Appointments</button>
         </li>
         <li class="nav-item">
           <button class="btn btn-danger" (click)="logout()">Logout</button>
