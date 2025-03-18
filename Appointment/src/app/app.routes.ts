@@ -33,7 +33,7 @@ export const routes: Routes = [
   { path: 'appointment-confirmation', component: ConfirmationComponent },
   {path: 'review', component: ReviewsComponent},
   {path: 'doctor-list', component: DoctorListComponent},
-  {path: 'user-appointments', component: UserAppointmentsComponent}
+  {path: 'user-appointments', component: UserAppointmentsComponent},
   {path: 'doctor-list', component: DoctorListComponent},
   {path: 'review', component: ReviewsComponent},
   {path:'all-appointments',component:ManageAppointmentComponent}
