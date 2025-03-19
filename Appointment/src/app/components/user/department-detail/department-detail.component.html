@@ -154,9 +154,25 @@
               </button>
             </div>
 
-            <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
+            <!-- <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
               <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">Delete</button>
+            </div> -->
+            <div class="col-md-3 text-md-end text-center">
+              <button class="btn btn-danger me-2" (click)="deleteDoctor(doctor.id)">Delete</button>
+              <button class="btn btn-warning" (click)="editDoctor(doctor)">Edit</button>
             </div>
+            
+            <!-- Edit Form (Shown When Editing) -->
+            <div *ngIf="doctor.isEditing" class="col-12 mt-3">
+              <div class="card p-3">
+                <h4>Edit Doctor</h4>
+                <input type="text" class="form-control mb-2" [(ngModel)]="doctor.editName" placeholder="Doctor Name">
+                <input type="text" class="form-control mb-2" [(ngModel)]="doctor.editQualification" placeholder="Qualification">
+                <button class="btn btn-success" (click)="saveDoctor(doctor)">Save</button>
+                <button class="btn btn-secondary ms-2" (click)="cancelEdit(doctor)">Cancel</button>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>
