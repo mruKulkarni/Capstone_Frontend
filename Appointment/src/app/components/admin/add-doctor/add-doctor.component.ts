@@ -22,7 +22,7 @@ export class AddDoctorComponent implements OnInit {
     name: ['', Validators.required],
     qualification: ['', Validators.required],
     departmentId: ['', Validators.required],
-    averageRating: [0, [Validators.min(0), Validators.max(5)]]
+    // averageRating: [0, [Validators.min(0), Validators.max(5)]]
   });
 
   departments: any[] = []; // Holds department data
@@ -45,7 +45,8 @@ export class AddDoctorComponent implements OnInit {
 
   onSubmit() {
     if (this.doctorForm.valid) {
-      this.http.post('http://localhost:8082/doctors', this.doctorForm.value).subscribe({
+      const doctorData = { ...this.doctorForm.value, averageRating: 5 };
+      this.http.post('http://localhost:8082/doctors', doctorData).subscribe({
         next: () => {
           alert('Doctor added successfully');
           this.router.navigate(['/departments']); // Redirect after adding
