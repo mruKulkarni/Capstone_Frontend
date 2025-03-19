@@ -97,8 +97,10 @@ export class DepartmentDetailComponent implements OnInit {
             selectedTime: '',
             bookedSlotsByDate: {},
             availableTimes: [],
-            timeSlotsFetched: false ,// New flag to control time slot selection
-            doctorCode: doctor.doctorCode // ✅ Ensure doctor code is stored
+            timeSlotsFetched: false,
+            doctorCode: doctor.doctorCode,
+            showReviews: false, // Controls dropdown visibility
+            reviews: [] // Stores fetched reviews
           }));
         } else {
           this.doctors = [];
@@ -196,6 +198,32 @@ export class DepartmentDetailComponent implements OnInit {
         alert(error.error?.error || 'Failed to book appointment. Please try again.');
       }
     });
+  }
+
+  getDoctorReviews(doctorId: number) {
+    this.http.get<any[]>(`http://localhost:8082/reviews/doctor/${doctorId}`).subscribe({
+      next: (reviews) => {
+        const doctor = this.doctors.find(d => d.id === doctorId);
+        if (doctor) {
+          doctor.reviews = reviews.map(review => ({
+            rating: review.rating,
+            comment: review.comments,
+            reviewer: review.userName // ✅ Fetch reviewer’s name
+          }));
+          this.cdr.detectChanges();
+        }
+      },
+      error: (error) => {
+        console.error("Error fetching reviews:", error);
+      }
+    });
+  }
+
+  toggleReviews(doctor: any) {
+    doctor.showReviews = !doctor.showReviews;
+    if (doctor.showReviews && doctor.reviews.length === 0) {
+      this.getDoctorReviews(doctor.id);
+    }
   }
 
   editDoctor(doctor: any) {
