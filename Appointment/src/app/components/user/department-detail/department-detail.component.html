@@ -69,7 +69,7 @@
             <!-- <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
               <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">Delete</button>
             </div> -->
-            <div class="col-md-3 text-md-end text-center">
+            <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
               <button class="btn btn-danger me-2" (click)="deleteDoctor(doctor.id)">Delete</button>
               <button class="btn btn-warning" (click)="editDoctor(doctor)">Edit</button>
             </div>
