@@ -1,42 +1,182 @@
-/* Style the table */
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Table Styling */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #315d88;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+td {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Alternate Row Styling */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e0e7ff;
+  transition: 0.3s;
+}
+
+/* Buttons */
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Review Form Styling */
+.review-form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #ddd;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Review Form Header */
+.review-form h3 {
+  margin-bottom: 15px;
+  color: #315d88;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Form Labels */
+.review-form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Dropdown & Textarea Styling */
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.review-form textarea {
+  height: 90px;
+  resize: none;
+}
+
+/* Form Inputs Focus Effect */
+.review-form select:focus,
+.review-form textarea:focus {
+  border-color: #315d88;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(49, 93, 136, 0.3);
+}
+
+
+/* Review Form Buttons */
+.review-form button {
+  margin-top: 12px;
+  padding: 10px;
+  width: 48%;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.review-form button:first-of-type {
+  background-color: #117e1a;
+  width: 40%;
+  margin-right: 10%;
+  margin-left: 5%;
+}
+
+.review-form button:first-of-type:hover {
+  background-color: #1dbb2a;
+}
+
+.review-form button:last-of-type {
+  background-color: #94222e;
+  width: 40%;
+
+}
+
+.review-form button:last-of-type:hover {
+  background-color: #d83445;
+}
+
+/* No Appointments Message */
+p {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}
+
+
+/* Subtle Fade-In Animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
   }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
-  
-  th {
-    background-color: #315d88;
-    color: white;
-  }
-  
-  /* Alternate row color */
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  /* Button styling */
-  button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+}
+
+/* Auto-scroll animation for smooth effect */
+html {
+  scroll-behavior: smooth;
+}

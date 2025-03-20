@@ -39,17 +39,17 @@
   
   <!-- Review Form (only visible when a user selects an appointment) -->
   <div *ngIf="selectedAppointment" class="review-form">
-    <h3>Submit Review for {{ selectedAppointment.doctorName }}</h3>
+    <h3>Submit Review for Dr. {{ selectedAppointment.doctorName }}</h3>
   
     <label>Rating:</label>
     <select [(ngModel)]="reviewData.rating">
-      <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }}</option>
+      <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }} ⭐</option>
     </select>
   
     <label>Comment:</label>
     <textarea [(ngModel)]="reviewData.comment"></textarea>
   
-    <button (click)="submitReview()">Submit</button>
+    <button class="btnForm"(click)="submitReview()">Submit</button>
     <button (click)="cancelReview()">Cancel</button>
   </div>
   <p *ngIf="appointments.length === 0">No appointments available.</p>
