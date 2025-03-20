@@ -20,7 +20,7 @@ export class ManageAppointmentComponent implements OnInit {
     this.appointmentService.getAllAppointments().subscribe({
       next: (data) => {
         this.appointments = data;
-        console.log('Appointments:', this.appointments); 
+        //console.log('Appointments:', this.appointments); 
       },
       error: (error) => {
         console.error('Error fetching appointments:', error);

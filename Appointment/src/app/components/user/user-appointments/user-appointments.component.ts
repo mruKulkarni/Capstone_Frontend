@@ -25,7 +25,7 @@ export class UserAppointmentsComponent {
   fetchAppointments() {
     this.userAppointmentsService.getUserAppointments(this.userId).subscribe((data) => {
       this.appointments = data;
-      console.log('Appointments:', this.appointments); // Debugging log
+      //console.log('Appointments:', this.appointments); // Debugging log
     });
   }
 
@@ -61,11 +61,11 @@ export class UserAppointmentsComponent {
     };
   
     // ✅ Log the payload before sending
-    console.log('Submitting Review:', reviewPayload);
+    //console.log('Submitting Review:', reviewPayload);
   
     this.userAppointmentsService.submitReview(reviewPayload).subscribe(response => {
-      console.log('Review Submission Successful:', response);
-      alert('Review submitted successfully!');
+      //console.log('Review Submission Successful:', response);
+      //alert('Review submitted successfully!');
   
       this.selectedAppointment.reviewSubmitted = true; // Mark as submitted
       this.selectedAppointment.rating = this.reviewData.rating; // ✅ Store submitted rating

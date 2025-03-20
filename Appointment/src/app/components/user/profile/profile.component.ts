@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.getProfile(this.userEmail).subscribe(
       (data) => {
-        console.log("API Response:", data);
+        //("API Response:", data);
         this.profile = data;
         if (this.profile.dateOfBirth || this.profile.date_of_birth) {
           this.calculatedAge = this.calculateAge(this.profile.dateOfBirth || this.profile.date_of_birth);
@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
   saveProfile() {
     this.profileService.updateProfile(this.profile.email, this.profile).subscribe(
       () => {
-        console.log("Profile updated successfully");
+        //console.log("Profile updated successfully");
         this.isEditing = false;
         // Recalculate age after saving DOB changes
         if (this.profile.dateOfBirth || this.profile.date_of_birth) {

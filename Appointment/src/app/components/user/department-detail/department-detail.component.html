@@ -34,6 +34,9 @@
                   </li>
                 </ul>
               </div>
+              <div *ngIf="bookingFailError" class="alert alert-danger mt-3 animate-shake">
+                Unable to delete doctor. Doctor not found.
+            </div>
             </div>
 
             <!-- Appointment Booking for Users (Aligned to the Right) -->

@@ -19,7 +19,7 @@ export class DepartmentService {
   }
   getDoctorByDepartment(id: number): Observable<any[]> { // ✅ Fix method name
     const endpoint = `${this.apiUrl}/${id}/doctors`;
-    console.log("Fetching doctors from:", endpoint); // ✅ Debugging log
+    //console.log("Fetching doctors from:", endpoint); // ✅ Debugging log
     return this.http.get<any[]>(endpoint); // ✅ Directly return Observable
   }
 }

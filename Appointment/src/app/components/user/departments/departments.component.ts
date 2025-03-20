@@ -26,14 +26,14 @@ export class DepartmentsComponent implements OnInit {
   loadDepartments() {
     this.departmentService.getDepartments().subscribe(
       data => {
-        console.log('Departments received:', data);
+        //console.log('Departments received:', data);
   
         this.departments = data.map(department => ({
           ...department,
           isDisabled: department.hasDoctors === false // Disable if hasDoctors is false
         }));
   
-        console.log('Updated departments:', this.departments);
+        //console.log('Updated departments:', this.departments);
       },
       error => {
         console.error('Error fetching departments:', error);
@@ -44,10 +44,10 @@ export class DepartmentsComponent implements OnInit {
 
   onDepartmentClick(department: any) {
     if (!department.isDisabled) {
-      console.log('Navigating to department:', department);
+      //console.log('Navigating to department:', department);
       this.router.navigate(['/departments', department.id]);
     } else {
-      console.log('Department is disabled, cannot navigate.');
+      //console.log('Department is disabled, cannot navigate.');
     }
   }
 }
