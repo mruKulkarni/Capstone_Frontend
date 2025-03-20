@@ -33,6 +33,12 @@ export class UserAppointmentsComponent {
     if (appointment.status === 'Completed' && !appointment.reviewSubmitted) {
       this.selectedAppointment = appointment;
       this.reviewData = { rating: null, comment: '' }; // Reset form
+      setTimeout(() => {
+        const reviewForm = document.querySelector('.review-form');
+        if (reviewForm) {
+          reviewForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   }
 
