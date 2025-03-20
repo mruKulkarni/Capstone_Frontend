@@ -1,66 +1,79 @@
 <div class="container mt-4">
-  <h1 class="text-center mb-4">{{ departmentName }} Department</h1>
-  <h2 class="text-center mb-4">Available Doctors</h2>
+  <h1 class="text-center mb-4 text-dark">{{ departmentName }} Department</h1>
+  <p class="text-center mb-4 text-dark">Available Doctors</p>
 
   <div *ngIf="doctors.length > 0; else noData">
     <div class="row gy-3">
       <div *ngFor="let doctor of doctors" class="col-12">
-        <div class="card shadow-sm border-0 p-3">
+        <div class="doctor-card p-4 shadow-sm">
+
           <div class="row align-items-center">
             
-            <!-- Doctor Details -->
+            <!-- Doctor Details (Left Side) -->
             <div class="col-md-6">
-              <h3 class="fw-bold">{{ doctor.name }}</h3>
-              <p><strong>License Number:</strong> {{ doctor.doctorCode }}</p>
-              <p><strong>Qualification:</strong> {{ doctor.qualification }}</p>
-              <p><strong>Rating:</strong> ⭐{{ doctor.averageRating }}</p>
-              
+              <h3 class="fw-bold text-dark">Dr. {{ doctor.name }}</h3>
+              <p class="text-muted"><strong>License Number:</strong> {{ doctor.doctorCode }}</p>
+              <p class="text-muted"><strong>Qualification:</strong> {{ doctor.qualification }}</p>
+              <p class="text-primary"><strong>Rating:</strong> ⭐{{ doctor.averageRating }}</p>
+
               <!-- Show Reviews Button -->
-              <button class="btn btn-info btn-sm mt-2" (click)="toggleReviews(doctor)">
+              <button class="btn btn-outline-primary btn-sm mt-2" (click)="toggleReviews(doctor)">
                 {{ doctor.showReviews ? 'Hide Reviews' : 'Show Reviews' }}
               </button>
 
               <!-- Reviews Section -->
               <div *ngIf="doctor.showReviews" class="mt-3">
-                <h5 class="text-primary">Patient Reviews</h5>
+                <p class="text-primary">Patient Reviews</p>
                 <ul class="list-group">
-                  <li *ngIf="doctor.reviews.length === 0" class="list-group-item text-muted">
+                  <li *ngIf="!doctor.reviews || doctor.reviews.length === 0" class="list-group-item text-muted">
                     No reviews available
                   </li>
                   <li *ngFor="let review of doctor.reviews" class="list-group-item">
                     <strong>⭐ {{ review.rating }}</strong> - "{{ review.comment }}"  
-                    <br> <span class="text-muted">- {{ review.reviewer }}</span> <!-- ✅ Show Reviewer's Name -->
+                    <br> <span class="text-muted">- {{ review.reviewer }}</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <!-- Appointment Booking for Users -->
-            <div *ngIf="!isAdmin" class="col-md-3 text-center">
-              <label class="form-label fw-bold">Select Date:</label>
-              <input type="date" class="form-control" [(ngModel)]="doctor.selectedDate" 
-                     (change)="onDateChange(doctor)" [min]="getTomorrowDate()" [max]="getMaxDate()">
-              <button class="btn btn-secondary mt-2" (click)="fetchTimeSlots(doctor)" 
-                      [disabled]="!doctor.selectedDate">
-                Fetch Time Slots
-              </button>
-            </div>
+            <!-- Appointment Booking for Users (Aligned to the Right) -->
+            <div *ngIf="!isAdmin" class="col-md-6 d-flex flex-column align-items-end text-md-end">
+              
+              <div class="d-flex flex-row gap-2">
+                
+                <!-- Date Selection -->
+                <div>
+                  <label class="form-label fw-bold text-dark">Select Date:</label>
+                  <input type="date" class="form-control input-dark" [(ngModel)]="doctor.selectedDate" 
+                         (change)="onDateChange(doctor)" [min]="getTomorrowDate()" [max]="getMaxDate()">
+                </div>
 
-            <div *ngIf="!isAdmin" class="col-md-3 text-center">
-              <label class="form-label fw-bold">Select Time Slot:</label>
-              <select class="form-select" [(ngModel)]="doctor.selectedTime" 
-                      [disabled]="!doctor.timeSlotsFetched">
-                <option *ngFor="let time of doctor.availableTimes" 
-                        [value]="time" 
-                        [disabled]="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)">
-                  {{ time }} 
-                  <span *ngIf="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)"> (Booked)</span>
-                </option>
-              </select>
-            </div>
+                <!-- Fetch Time Slots Button -->
+                <div>
+                  <label class="form-label fw-bold text-dark"> &nbsp; </label>
+                  <button class="btn btn-fetch-time" (click)="fetchTimeSlots(doctor)" 
+                          [disabled]="!doctor.selectedDate">
+                    Fetch Time Slots
+                  </button>
+                </div>
 
-            <div *ngIf="!isAdmin" class="col-md-3 text-md-end text-center">
-              <button class="btn btn-primary" (click)="bookAppointment(doctor)" 
+                <!-- Time Slot Selection -->
+                <div>
+                  <label class="form-label fw-bold text-dark">Select Time Slot:</label>
+                  <select class="form-select input-dark" [(ngModel)]="doctor.selectedTime" 
+                          [disabled]="!doctor.timeSlotsFetched">
+                    <option *ngFor="let time of doctor.availableTimes" 
+                            [value]="time" 
+                            [disabled]="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)">
+                      {{ time }} 
+                      <span *ngIf="doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(time)"> (Booked)</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Book Now Button -->
+              <button class="btn book-btn mt-3" (click)="bookAppointment(doctor)" 
                       [disabled]="!doctor.selectedTime || doctor.bookedSlotsByDate?.[doctor.selectedDate]?.includes(doctor.selectedTime)">
                 Book Now
               </button>
@@ -69,7 +82,7 @@
             <!-- <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
               <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">Delete</button>
             </div> -->
-            <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
+            <div *ngIf="isAdmin" class="col-md-3 d-flex ms-auto justify-content-end">
               <button class="btn btn-danger me-2" (click)="deleteDoctor(doctor.id)">Delete</button>
               <button class="btn btn-warning" (click)="editDoctor(doctor)">Edit</button>
             </div>
@@ -93,6 +106,6 @@
 
   <!-- No doctors available -->
   <ng-template #noData>
-    <p class="text-center text-danger">No doctors available.</p>
+    <p class="text-end text-danger">No doctors available.</p>
   </ng-template>
 </div>

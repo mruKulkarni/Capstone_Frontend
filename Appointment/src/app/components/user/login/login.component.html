@@ -1,39 +1,50 @@
-<div class="container mt-5">
-  <h2 class="text-center">Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="border p-4 rounded shadow bg-light">
-    
-    <!-- Email -->
-    <div class="mb-3">
-      <label class="form-label">Email:</label>
-      <input type="email" formControlName="email" class="form-control" />
-      <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="text-danger">
-        <small *ngIf="loginForm.controls['email'].errors?.['required']">Email is required.</small>
-        <small *ngIf="loginForm.controls['email'].errors?.['email']">Invalid email format.</small>
-      </div>
-    </div>
-    
-    <!-- Password -->
-    <div class="mb-3">
-      <label class="form-label">Password:</label>
-      <input type="password" formControlName="password" class="form-control" />
-      <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-danger">
-        <small *ngIf="loginForm.controls['password'].errors?.['required']">Password is required.</small>
-        <small *ngIf="loginForm.controls['password'].errors?.['minlength']">Password must be at least 6 characters.</small>
-      </div>
-    </div>
-    
-    <!-- Submit Button -->
-    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success w-100">Login</button>
-    
-    <!-- Error Message -->
-    <div *ngIf="loginError" class="alert alert-danger mt-3">
-      Invalid email or password.
-    </div>
+<!-- Full-Screen Login Section -->
+<section class="hero d-flex align-items-center justify-content-center">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-5">
+              <h2 class="text-center fw-bold animate-fade-in">Welcome Back</h2>
+              <p class="text-center text-muted animate-slide-up">Log in and take control of your appointments.</p>
 
-  </form>
-  
-  <!-- Register Button -->
-  <div class="text-center mt-3">
-    <p>Don't have an account? <button class="btn btn-link" (click)="goToRegister()">Register</button></p>
+              <form [formGroup]="loginForm" (ngSubmit)="login()" class="p-4 rounded shadow-lg bg-white animate-float">
+                  <!-- Email Field -->
+                  <div class="mb-3">
+                      <label class="form-label">Email:</label>
+                      <input type="email" formControlName="email" class="form-control input-highlight" />
+                      <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="text-danger mt-1">
+                          <small *ngIf="loginForm.controls['email'].errors?.['required']">Email is required.</small>
+                          <small *ngIf="loginForm.controls['email'].errors?.['email']">Invalid email format.</small>
+                      </div>
+                  </div>
+
+                  <!-- Password Field -->
+                  <div class="mb-3">
+                      <label class="form-label">Password:</label>
+                      <input type="password" formControlName="password" class="form-control input-highlight" />
+                      <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-danger mt-1">
+                          <small *ngIf="loginForm.controls['password'].errors?.['required']">Password is required.</small>
+                          <small *ngIf="loginForm.controls['password'].errors?.['minlength']">At least 6 characters required.</small>
+                      </div>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary w-100 rounded-pill shadow-sm animate-hover">
+                      Login
+                  </button>
+
+                  <!-- Error Message -->
+                  <div *ngIf="loginError" class="alert alert-danger mt-3 animate-shake">
+                      Invalid email or password.
+                  </div>
+              </form>
+
+              <!-- Register Link -->
+              <div class="text-center mt-4">
+                  <p>New here? 
+                      <button class="btn btn-link text-primary fw-bold animate-pulse" (click)="goToRegister()">Sign Up</button>
+                  </p>
+              </div>
+          </div>
+      </div>
   </div>
-</div>
+</section>

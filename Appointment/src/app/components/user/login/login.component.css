@@ -1,16 +1,89 @@
-.container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  label {
-    font-weight: bold;
-  }
-  .error-message {
-    margin-top: 10px;
-    color: red;
-  }
-  
+/* Full-Screen Centered Layout */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #f8f9fa; /* Soft background for elegance */
+}
+
+/* Floating Login Box */
+form {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: floatUp 1.5s ease-in-out;
+}
+
+/* Input Fields with Subtle Glow */
+.input-highlight {
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-highlight:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Floating Animation */
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.btn-primary {
+  transition: 0.3s ease-in-out;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Smooth Hover Effect */
+.animate-hover {
+  transition: transform 0.3s ease-in-out;
+}
+
+.animate-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Subtle Pulse Effect for Sign-Up */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-pulse {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Shake Effect for Error Messages */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Footer */
+footer {
+  background: #343a40;
+  animation: fadeIn 2s ease-in-out;
+}

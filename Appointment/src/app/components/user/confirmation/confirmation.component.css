@@ -1,33 +1,124 @@
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
+/* Page Background */
+body {
+  background-color: #ffffff;
+  color: #222831;
+}
+
+/* Centered Card */
+.confirmation-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center; /* Center all text inside the card */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Card Title */
+h2 {
+  font-size: 2rem; /* Increased text size */
+  font-weight: bold;
+  color: #222831;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Fancy Table */
+.confirmation-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+/* Table Header */
+.confirmation-table th {
+  background-color: #315d88;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.3rem; /* Increased text size */
+  padding: 16px;
+}
+
+/* Table Rows */
+.confirmation-table td {
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 1.2rem; /* Increased text size */
+  padding: 14px;
+  text-align: center; /* Center align all text */
+}
+
+/* Alternating Row Colors */
+.confirmation-table tr:nth-child(even) td {
+  background-color: #f1f1f1;
+}
+
+/* Status Styling */
+.status-confirmed {
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.status-pending {
+  color: #ffc107;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.status-cancelled {
+  color: #dc3545;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Buttons */
+.btn-outline-dark {
+  border: 2px solid #222831;
+  color: #222831;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  padding: 12px 20px; /* Larger buttons */
+  font-size: 1.1rem;
+}
+
+.btn-outline-dark:hover {
+  background-color: #222831;
+  color: white;
+}
+
+.btn-danger {
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .confirmation-card {
+      padding: 20px;
   }
-  
-  h2 {
-    color: #007bff;
-    margin-bottom: 20px;
+
+  .confirmation-table th,
+  .confirmation-table td {
+      padding: 14px;
+      font-size: 1rem; /* Adjusted text size for small screens */
   }
-  
-  p {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 0;
-    padding: 5px;
+
+  .btn-outline-dark, .btn-danger {
+      width: 100%;
+      margin-bottom: 8px;
   }
-  
-  p strong {
-    color: #000;
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      width: 90%;
-      padding: 15px;
-    }
-  }
-  
+}

@@ -1,0 +1,54 @@
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(to right, #5fafff, #315d88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 1.5s ease-in-out;
+}
+
+.animate-bounce {
+    animation: bounce 1.2s infinite;
+}
+
+/* Feature Boxes Hover Effect */
+.animate-hover {
+    transition: transform 0.3s ease-in-out;
+}
+
+.animate-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+footer {
+    background: #343a40;
+}

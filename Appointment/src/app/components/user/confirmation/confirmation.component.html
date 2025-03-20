@@ -1,9 +1,43 @@
-<div class="container" *ngIf="appointmentDetails">
-    <h2>Appointment Confirmation</h2>
-    <p><strong>Patient Name:</strong> {{ appointmentDetails.userName }}</p>
-    <p><strong>Doctor:</strong> {{ appointmentDetails.doctorName }}</p>
-    <p><strong>Department:</strong> {{ appointmentDetails.department }}</p>
-    <p><strong>Date:</strong> {{ appointmentDetails.date }}</p>
-    <p><strong>Slot:</strong> {{ appointmentDetails.slot }}</p>
-    <p><strong>Status:</strong> {{ appointmentDetails.status }}</p>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="confirmation-card p-4 shadow-lg">
+    
+    <h2 class="text-center text-dark mb-4">Appointment Confirmation</h2>
+
+    <table class="table table-bordered text-center confirmation-table">
+      <tbody>
+        <tr>
+          <th>Patient Name</th>
+          <td>{{ appointmentDetails.userName }}</td>
+        </tr>
+        <tr>
+          <th>Doctor</th>
+          <td>{{ appointmentDetails.doctorName }}</td>
+        </tr>
+        <tr>
+          <th>Department</th>
+          <td>{{ appointmentDetails.department }}</td>
+        </tr>
+        <tr>
+          <th>Date</th>
+          <td>{{ appointmentDetails.date }}</td>
+        </tr>
+        <tr>
+          <th>Slot</th>
+          <td>{{ appointmentDetails.slot }}</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td>
+            <span [ngClass]="{
+              'status-confirmed': appointmentDetails.status === 'Confirmed',
+              'status-pending': appointmentDetails.status === 'Pending',
+              'status-cancelled': appointmentDetails.status === 'Cancelled'
+            }">
+              {{ appointmentDetails.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
