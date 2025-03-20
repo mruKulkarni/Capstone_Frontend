@@ -40,7 +40,7 @@ export class AppComponent {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
     this.isNavbarOpen = false; // Close navbar on logout
   }
 
