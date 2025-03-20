@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DoctorListComponent implements OnInit {
   doctors: any[] = [];
+  docNotFoundError: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -25,12 +26,13 @@ export class DoctorListComponent implements OnInit {
 
   deleteDoctor(id: number) {
     if (confirm('Are you sure you want to delete this doctor?')) {
-      this.http.delete(`/doctors/${id}`).subscribe(() => {
-        alert('Doctor deleted successfully');
+      this.http.delete(`/doctors/${id}`).subscribe({next:() => {
+        //alert('Doctor deleted successfully');
         this.loadDoctors(); // Refresh the list
-      }, error => {
-        alert('Failed to delete doctor');
-      });
+      }, error: error => {
+        //alert('Failed to delete doctor');
+        this.docNotFoundError = true;
+      }});
     }
   }
 }

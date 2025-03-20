@@ -85,7 +85,11 @@
             <div *ngIf="isAdmin" class="col-md-3 d-flex ms-auto justify-content-end">
               <button class="btn btn-danger me-2" (click)="deleteDoctor(doctor.id)">Delete</button>
               <button class="btn btn-warning" (click)="editDoctor(doctor)">Edit</button>
+              
             </div>
+            <div *ngIf="deactivateDocError" class="alert alert-danger mt-3 animate-shake">
+              Unable to delete doctor. Doctor not found.
+          </div>
             
             <!-- Edit Form (Shown When Editing) -->
             <div *ngIf="doctor.isEditing" class="col-12 mt-3">

@@ -16,6 +16,7 @@ import { DoctorService } from '../../../services/doctor.service';
 })
 export class DepartmentDetailComponent implements OnInit {
   isAdmin: boolean = false;
+  deactivateDocError : boolean = false;
 
   departmentId!: number;
   departmentName: string = ''; // ✅ Store department name
@@ -63,12 +64,13 @@ export class DepartmentDetailComponent implements OnInit {
     if (confirm('Are you sure you want to delete this doctor?')) {
       this.http.put(`http://localhost:8082/doctors/${id}/deactivate`, {}, { responseType: 'text' }).subscribe({
         next: () => {
-          alert('Doctor deactivated successfully');
+          //alert('Doctor deactivated successfully');
           this.getDoctorsByDepartment(this.departmentId); // ✅ Refresh doctor list after soft delete
         },
         error: (error) => {
-          console.error('Error deactivating doctor:', error);
-          alert('Failed to deactivate doctor. Please try again.');
+          this.deactivateDocError = true;
+          //console.error('Error deactivating doctor:', error);
+         // alert('Failed to deactivate doctor. Please try again.');
         }
       });
     }
@@ -134,7 +136,7 @@ export class DepartmentDetailComponent implements OnInit {
     doctor.selectedDate = selectedDate.toISOString().split('T')[0];
 
     if (doctor.selectedDate === this.today) {
-      alert("Booking for today is not allowed. Please select another date.");
+      //alert("Booking for today is not allowed. Please select another date.");
       doctor.selectedDate = ''; // Reset date selection
       return;
     }
@@ -142,7 +144,7 @@ export class DepartmentDetailComponent implements OnInit {
 
   fetchTimeSlots(doctor: any) {
     if (!doctor.selectedDate) {
-      alert("Please select a date before fetching available time slots.");
+      //alert("Please select a date before fetching available time slots.");
       return;
     }
 
@@ -182,7 +184,7 @@ export class DepartmentDetailComponent implements OnInit {
 
     this.http.post('http://localhost:8082/appointments/book', appointmentData).subscribe({
       next: () => {
-        alert(`Appointment booked for ${doctor.name} on ${doctor.selectedDate} at ${doctor.selectedTime}`);
+        //alert(`Appointment booked for ${doctor.name} on ${doctor.selectedDate} at ${doctor.selectedTime}`);
         this.router.navigate(['/appointment-confirmation']);
 
         if (!doctor.bookedSlotsByDate[doctor.selectedDate]) {

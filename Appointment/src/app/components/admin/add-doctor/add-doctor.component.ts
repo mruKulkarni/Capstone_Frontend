@@ -17,6 +17,8 @@ export class AddDoctorComponent implements OnInit {
   private http = inject(HttpClient);
   private router = inject(Router);
 
+  addDocError: boolean = false;
+
   doctorForm: FormGroup = this.fb.group({
     doctorCode: ['', Validators.required],
     name: ['', Validators.required],
@@ -48,12 +50,13 @@ export class AddDoctorComponent implements OnInit {
       const doctorData = { ...this.doctorForm.value, averageRating: 5 };
       this.http.post('http://localhost:8082/doctors', doctorData).subscribe({
         next: () => {
-          alert('Doctor added successfully');
+          //alert('Doctor added successfully');
           this.router.navigate(['/departments']); // Redirect after adding
         },
         error: (err) => {
-          console.error('Error adding doctor:', err);
-          alert('Failed to add doctor');
+          this.addDocError = true;
+          //console.error('Error adding doctor:', err);
+          //alert('Failed to add doctor');
         }
       });
     }
