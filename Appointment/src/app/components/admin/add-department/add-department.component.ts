@@ -8,7 +8,8 @@ import { DepartmentService } from '../../../services/department.service';
 @Component({
   selector: 'app-add-department',
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './add-department.component.html'
+  templateUrl: './add-department.component.html',
+  styleUrls: ['./add-department.component.css']
 })
 export class AddDepartmentComponent {
   departmentForm: FormGroup;

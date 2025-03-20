@@ -20,7 +20,7 @@ export class DepartmentDetailComponent implements OnInit {
   departmentId!: number;
   departmentName: string = ''; // ✅ Store department name
   doctors: any[] = [];
-  availableTimes = ['9AM', '11AM', '1PM', '3PM', '5PM'];
+  availableTimes = ['9 AM', '11 AM', '1 PM', '3 PM', '5 PM'];
   today: string = '';
 
   constructor(

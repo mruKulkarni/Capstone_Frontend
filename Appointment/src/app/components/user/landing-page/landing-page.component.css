@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(to right, #007bff, #6610f2);
+    background: linear-gradient(to right, #5fafff, #315d88);
     display: flex;
     justify-content: center;
     align-items: center;

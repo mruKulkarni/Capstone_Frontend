@@ -23,7 +23,7 @@
 
               <!-- Reviews Section -->
               <div *ngIf="doctor.showReviews" class="mt-3">
-                <h5 class="text-primary">Patient Reviews</h5>
+                <p class="text-primary">Patient Reviews</p>
                 <ul class="list-group">
                   <li *ngIf="!doctor.reviews || doctor.reviews.length === 0" class="list-group-item text-muted">
                     No reviews available
@@ -82,7 +82,7 @@
             <!-- <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
               <button class="btn btn-danger" (click)="deleteDoctor(doctor.id)">Delete</button>
             </div> -->
-            <div *ngIf="isAdmin" class="col-md-3 text-md-end text-center">
+            <div *ngIf="isAdmin" class="col-md-3 d-flex ms-auto justify-content-end">
               <button class="btn btn-danger me-2" (click)="deleteDoctor(doctor.id)">Delete</button>
               <button class="btn btn-warning" (click)="editDoctor(doctor)">Edit</button>
             </div>
