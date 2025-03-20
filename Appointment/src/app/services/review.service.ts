@@ -25,12 +25,12 @@ export class ReviewService {
   constructor(private http: HttpClient) {}
 
   getLatestAppointment(userId: number): Observable<AppointmentDetails> {
-    console.log(this.http.get<AppointmentDetails>(`${this.apiUrl}/latest-appointment/${userId}`));
+    //console.log(this.http.get<AppointmentDetails>(`${this.apiUrl}/latest-appointment/${userId}`));
     return this.http.get<AppointmentDetails>(`${this.apiUrl}/latest-appointment/${userId}`);
   }
 
   submitReview(review: ReviewPayload): Observable<any> {
-    console.log(review);
+    //console.log(review);
     return this.http.post(`${this.apiUrl}/submit`, review);
   }
 }

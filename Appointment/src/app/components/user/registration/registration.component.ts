@@ -65,8 +65,8 @@ export class RegistrationComponent {
       
       this.http.post(this.apiUrl, formData).subscribe({
         next: (response) => {
-          console.log('Success:', response);
-          alert('Registration Successful!');
+          //console.log('Success:', response);
+          //alert('Registration Successful!');
           this.registrationForm.reset(); // Reset the form after success
 
           // Redirect to the login page after successful registration
@@ -77,7 +77,7 @@ export class RegistrationComponent {
           if (error.status === 400) {
             this.emailExistsError = true; // Display email exists error
           } else {
-            alert('An error occurred. Please try again.');
+            //alert('An error occurred. Please try again.');
           }
         }
       });

@@ -32,7 +32,7 @@ export class ReviewsComponent implements OnInit {
   fetchLatestAppointment() {
     this.reviewService.getLatestAppointment(this.userId).subscribe({
       next: (data) => {
-        console.log('Fetched Appointment:', data); // Debugging
+        //console.log('Fetched Appointment:', data); // Debugging
         this.appointment = data; // Ensure data is assigned properly
       },
       error: (err) => console.error('Error fetching appointment', err)
@@ -48,12 +48,12 @@ export class ReviewsComponent implements OnInit {
         doctorId:  this.appointment.doctorId
       };
   
-      console.log('Submitting review:', reviewData); // Debugging log
+      //console.log('Submitting review:', reviewData); // Debugging log
   
       this.reviewService.submitReview(reviewData).subscribe({
         next: (response) => {
-          console.log("review response",response);
-          alert('Review submitted successfully!');
+          //console.log("review response",response);
+          //alert('Review submitted successfully!');
           this.router.navigate(['/departments']); // Redirect after submission
         },
         error: (err) => console.error('Error submitting review', err)

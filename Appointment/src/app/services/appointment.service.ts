@@ -21,7 +21,7 @@ export class AppointmentService {
   // Update the status of an appointment
   updateAppointmentStatus(appointmentId: number, status: string): Observable<AppointmentManageDTO> {
     // Replace with actual API endpoint for updating status
-    console.log(appointmentId);
+    //console.log(appointmentId);
     return this.http.put<AppointmentManageDTO>(`${this.apiUrl}/${appointmentId}/status`, { status });
   }
 }

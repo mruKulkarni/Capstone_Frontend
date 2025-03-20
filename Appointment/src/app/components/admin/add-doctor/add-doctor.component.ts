@@ -36,7 +36,7 @@ export class AddDoctorComponent implements OnInit {
   fetchDepartments() {
     this.departmentService.getDepartments().subscribe({
       next: data => {
-        console.log('Departments received:', data);
+        //console.log('Departments received:', data);
         this.departments = data;
       },
       error: error => {

@@ -17,6 +17,7 @@ import { DoctorService } from '../../../services/doctor.service';
 export class DepartmentDetailComponent implements OnInit {
   isAdmin: boolean = false;
   deactivateDocError : boolean = false;
+  bookingFailError: boolean = false;
 
   departmentId!: number;
   departmentName: string = ''; // ✅ Store department name
@@ -43,7 +44,7 @@ export class DepartmentDetailComponent implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      console.log("User returned to department page. Refetching booked slots...");
+      //console.log("User returned to department page. Refetching booked slots...");
       this.getDoctorsByDepartment(this.departmentId);
     });
   }
@@ -180,7 +181,7 @@ export class DepartmentDetailComponent implements OnInit {
       slot: doctor.selectedTime
     };
 
-    console.log("Booking appointment with:", appointmentData);
+    //console.log("Booking appointment with:", appointmentData);
 
     this.http.post('http://localhost:8082/appointments/book', appointmentData).subscribe({
       next: () => {
@@ -196,8 +197,9 @@ export class DepartmentDetailComponent implements OnInit {
         this.cdr.detectChanges();
       },
       error: (error) => {
-        console.error('Error booking appointment:', error);
-        alert(error.error?.error || 'Failed to book appointment. Please try again.');
+        //console.error('Error booking appointment:', error);
+        //alert(error.error?.error || 'Failed to book appointment. Please try again.');
+        this.bookingFailError = true;
       }
     });
   }

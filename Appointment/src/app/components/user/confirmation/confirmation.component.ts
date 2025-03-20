@@ -24,7 +24,7 @@ export class ConfirmationComponent implements OnInit{
   getAppointmentDetails(): void {
     this.confirmationService.getAppointmentConfirmation(this.userId).subscribe(
       (data) => {
-        console.log(data);
+        //console.log(data);
         this.appointmentDetails = data;
       },
       (error) => {
