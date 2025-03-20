@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { filter } from 'rxjs';
+import { DoctorService } from '../../../services/doctor.service';
 
 @Component({
   selector: 'app-department-detail',
@@ -27,7 +28,8 @@ export class DepartmentDetailComponent implements OnInit {
     private router: Router,
     private departmentService: DepartmentService,
     private cdr: ChangeDetectorRef,
-    private http: HttpClient
+    private http: HttpClient,
+    private doctorService: DoctorService
   ) {}
 
   ngOnInit() {
@@ -223,4 +225,28 @@ export class DepartmentDetailComponent implements OnInit {
       this.getDoctorReviews(doctor.id);
     }
   }
+
+  editDoctor(doctor: any) {
+    doctor.isEditing = true;
+    doctor.editName = doctor.name;
+    doctor.editQualification = doctor.qualification;
+  }
+  
+  saveDoctor(doctor: any) {
+    const updatedData = {
+      name: doctor.editName,
+      qualification: doctor.editQualification
+    };
+  
+    this.doctorService.updateDoctor(doctor.id, updatedData).subscribe(() => {
+      doctor.name = doctor.editName;
+      doctor.qualification = doctor.editQualification;
+      doctor.isEditing = false;
+    });
+  }
+  
+  cancelEdit(doctor: any) {
+    doctor.isEditing = false;
+  }
+  
 }

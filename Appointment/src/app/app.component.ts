@@ -40,6 +40,9 @@ import { filter } from 'rxjs';
   imports: [RouterOutlet, RouterLink, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   userName: string | null = '';
   isAdmin: boolean = false;
   showNavbar: boolean = true;

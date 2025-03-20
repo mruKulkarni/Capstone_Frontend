@@ -2,10 +2,10 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-doctor',
-  templateUrl: './doctor.component.html',
-  styleUrls: ['./doctor.component.css']
+  templateUrl: './doctors.component.html',
+  styleUrls: ['./doctors.component.css']
 })
-export class DoctorComponent implements OnChanges {
+export class DoctorsComponent implements OnChanges {
   @Input() doctors: any[] = [];
 
   constructor() {
