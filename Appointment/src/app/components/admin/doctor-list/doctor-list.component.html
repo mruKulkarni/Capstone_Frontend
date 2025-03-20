@@ -16,6 +16,9 @@
         <td>
           <button (click)="deleteDoctor(doctor.id)">Delete</button>
         </td>
+        <div *ngIf="docNotFoundError" class="alert alert-danger mt-3 animate-shake">
+          Unable to delete doctor. Doctor not found.
+      </div>
       </tr>
     </tbody>
   </table>

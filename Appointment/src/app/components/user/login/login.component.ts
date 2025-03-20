@@ -41,8 +41,8 @@ export class LoginComponent {
     // Call the login service to authenticate the user
     this.loginService.login(this.loginForm.value).subscribe({
       next:(response) => {
-        console.log('Login successful!', response);
-        alert('Login successful!');
+        //console.log('Login successful!', response);
+        //alert('Login successful!');
         localStorage.setItem("userId",response.email);
         localStorage.setItem('userName', response.name); 
         localStorage.setItem('userNumber', response.id);
@@ -52,9 +52,9 @@ export class LoginComponent {
       },
       error:
       (error) => {
-        console.error('Login failed', error);
+        //console.error('Login failed', error);
         this.loginError = true;  // Set loginError to true to show error message
-        alert('Invalid email or password!');  // Show a generic error alert
+        //alert('Invalid email or password!');  // Show a generic error alert
       }}
     );
   }
