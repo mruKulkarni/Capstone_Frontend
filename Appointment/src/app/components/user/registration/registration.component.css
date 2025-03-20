@@ -1,44 +1,86 @@
+/* Full-Screen Centered Layout */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #f8f9fa;
+  padding: 1% 2%; /* Further reduced top padding */
+}
+
+/* Adjusting Form Width */
 .container {
-    width: 50%;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  width: 90%;
+  padding-top: 0; /* Removed additional padding above */
+}
+
+/* Floating Registration Box */
+form {
+  background: white;
+  border-radius: 3%;
+  padding: 4%;
+  box-shadow: 0 2% 5% rgba(0, 0, 0, 0.15);
+  animation: floatUp 1s ease-in-out;
+  width: 100%;
+}
+
+/* Heading & Subtitle Visibility */
+h2 {
+  font-size: 2.2vw;
+  margin-bottom: 1%; /* Reduced margin below the heading */
+  margin-top: 0; /* Ensures no extra spacing above */
+}
+
+p {
+  font-size: 1.2vw;
+  margin-bottom: 2%;
+}
+
+/* Input Fields */
+.input-highlight {
+  border-radius: 5%;
+  padding: 3%;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Input Focus Effect */
+.input-highlight:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3% rgba(0, 123, 255, 0.3);
+}
+
+/* Ensuring Proper Spacing */
+@media (max-width: 768px) {
+  .container {
+      max-width: 90%;
+      padding-top: 0;
   }
-  
+
   h2 {
-    text-align: center;
+      font-size: 4vw;
+      margin-bottom: 0.5%;
   }
-  
-  label {
-    display: block;
-    margin: 10px 0 5px;
+
+  p {
+      font-size: 3vw;
+      margin-bottom: 2%;
   }
-  
-  input, select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+}
+
+/* Adjust for Short Screens */
+@media (max-height: 750px) {
+  .hero {
+      height: auto;
+      min-height: 100vh;
+      padding: 2% 0;
   }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-  }
-  
-  small {
-    color: red;
-  }
-  
+}
+
+/* Floating Animation */
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(2%); }
+  to { opacity: 1; transform: translateY(0); }
+}

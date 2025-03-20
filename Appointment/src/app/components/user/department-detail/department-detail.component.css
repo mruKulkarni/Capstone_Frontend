@@ -1,0 +1,165 @@
+/* Dark Background */
+body {
+    background-color: #315d88; /* Matches Navbar */
+    color: #eeeeee; /* Soft white text */
+}
+
+/* Container */
+.container {
+    max-width: 90%;
+}
+
+/* Page Titles */
+h1, h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Doctor Card */
+.doctor-card {
+    background-color: transparent;
+    border: 2px solid #30475e;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    padding: 15px;
+}
+
+/* Card Hover Effect */
+.doctor-card:hover {
+    border-color: #04686d;
+    box-shadow: 0 5px 15px rgba(0, 173, 181, 0.3);
+    transform: scale(1.02);
+}
+
+/* Align Date, Time Slot, and Button in One Row */
+.d-flex.flex-row.gap-2 {
+    gap: 10px;
+}
+
+/* Dark Input Fields - Fixed Smaller Size */
+.input-dark {
+    background-color: #547faa;
+    color: #ffffff !important; /* Ensures text is white */
+    border: 1px solid #30475e;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    width: 160px;
+}
+
+/* Fix Year, Month, and Day Picker Text Color */
+.input-dark::-webkit-datetime-edit {
+    color: #ffffff !important;
+}
+
+.input-dark::-webkit-datetime-edit-year-field,
+.input-dark::-webkit-datetime-edit-month-field,
+.input-dark::-webkit-datetime-edit-day-field {
+    color: #ffffff !important;
+}
+
+/* Fix Calendar Dropdown Arrow */
+.input-dark::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* Placeholder text wrapper */
+.input-dark::-webkit-datetime-edit-fields-wrapper {
+    color: #ffffff !important;
+}
+
+/* Focus effect */
+.input-dark:focus {
+    background: white;
+    color: #547faa !important;
+    border: none;
+    box-shadow: 0 0 12px rgba(0, 173, 181, 0.3);
+}
+
+/* Fetch Time Slots Button */
+.btn-fetch-time {
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    width: 160px;
+}
+
+/* Change to Green When Enabled */
+.btn-fetch-time:enabled {
+    background-color: #28a745 !important;
+    color: white !important;
+}
+
+/* Book Now Button */
+.book-btn {
+    background-color: #318858;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    width: 160px;
+}
+
+/* Book Now Hover Effect */
+.book-btn:hover {
+    background-color: #009959;
+    transform: scale(1.05);
+}
+
+/* Show Reviews Button */
+.btn-outline-primary {
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    color: #547faa;
+}
+
+.btn-outline-primary:hover {
+    background-color: #547faa;
+    color: white;
+}
+
+/* Reviews Section - Light Background */
+.list-group-item {
+    background-color: #ffffff !important;
+    color: #222831 !important;
+    border-color: #ddd !important;
+}
+
+.list-group-item strong {
+    color: #007bff;
+}
+
+/* No Doctors Available Message */
+.no-doctors-container {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    padding-right: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .d-flex.flex-row.gap-2 {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .book-btn, .btn-fetch-time {
+        width: 100%;
+    }
+}

@@ -5,14 +5,14 @@ import { NgIf, CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { debounceTime, switchMap, catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
-  imports: [ReactiveFormsModule, NgIf, CommonModule]
+  imports: [ReactiveFormsModule, NgIf, CommonModule, RouterLink]
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;

@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { DepartmentService } from '../../../services/department.service';
 import { DepartmentFilterPipe } from '../../../pipes/department-search.pipe';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-departments',
   standalone: true,
   templateUrl: './departments.component.html',
   styleUrls: ['./departments.component.css'],
-  imports: [CommonModule, FormsModule, DepartmentFilterPipe]
+  imports: [CommonModule, FormsModule, DepartmentFilterPipe, HttpClientModule]
 })
 export class DepartmentsComponent implements OnInit {
   departments: any[] = [];

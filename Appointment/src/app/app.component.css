@@ -1,0 +1,74 @@
+/* Dark Blue Navbar */
+.custom-navbar {
+    background-color: #315d88; /* Deep navy blue */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 12px 20px;
+}
+
+/* Navbar Brand (Username) */
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #eeeeee; /* Soft off-white text */
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border: none;
+    transition: all 0.3s ease-in-out;
+    background-color: #4a6c8d; /* Slightly muted blue */
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+
+.navbar-toggler:hover {
+    transform: scale(1.1);
+}
+
+/* Navbar Buttons */
+.nav-btn {
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 500;
+    background-color: #547faa; /* Muted dark blue */
+    color: #eeeeee;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.nav-btn:hover {
+    background-color: #194a58; /* Subtle cyan glow */
+    color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 173, 181, 0.3);
+}
+
+/* Logout Button */
+.btn-danger {
+    background-color: #dc3545 !important;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .custom-navbar {
+        padding: 10px 15px;
+    }
+
+    .nav-btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .navbar-collapse {
+        background: #1b1f3b;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}

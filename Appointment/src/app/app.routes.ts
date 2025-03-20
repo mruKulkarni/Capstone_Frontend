@@ -15,9 +15,10 @@ import { AboutUsComponent } from './components/user/about-us/about-us.component'
 import { DoctorListComponent } from './components/admin/doctor-list/doctor-list.component';
 import { UserAppointmentsComponent } from './components/user/user-appointments/user-appointments.component';
 import { ManageAppointmentComponent } from './components/admin/manage-appointment/manage-appointment.component';
+import { LandingPageComponent } from './components/user/landing-page/landing-page.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo:'login', pathMatch: 'full'}, 
+  //{path: '', redirectTo:'login', pathMatch: 'full'}, 
   { path: 'departments', component: DepartmentsComponent }, 
   { path: 'about', component: AboutUsComponent }, // Temporary - Replace with About Component
   { path: 'profile', component: ProfileComponent },
@@ -36,7 +37,8 @@ export const routes: Routes = [
   {path: 'user-appointments', component: UserAppointmentsComponent},
   {path: 'doctor-list', component: DoctorListComponent},
   {path: 'review', component: ReviewsComponent},
-  {path:'all-appointments',component:ManageAppointmentComponent}
+  {path:'all-appointments',component:ManageAppointmentComponent},
+  {path: '', component: LandingPageComponent}
 ];
 export const appRouting = provideRouter(routes, withComponentInputBinding());
 
